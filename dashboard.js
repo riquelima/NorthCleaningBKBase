@@ -1058,8 +1058,13 @@ function renderTrainings(trainingsList) {
         const transcriptText = training.transcript || "Transcrição não disponível para este vídeo.";
         
         card.innerHTML = `
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/${training.video_id}" title="${training.title_pt}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <div class="video-container" onclick="loadYoutubeVideo(this, '${training.video_id}', '${training.title_pt.replace(/'/g, "\\'")}')">
+                <div class="video-thumbnail-container">
+                    <img class="video-thumbnail" src="https://img.youtube.com/vi/${training.video_id}/mqdefault.jpg" alt="${training.title_pt}" loading="lazy">
+                </div>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="training-info">
                 <div class="training-header">
@@ -1078,6 +1083,16 @@ function renderTrainings(trainingsList) {
         container.appendChild(card);
     });
 }
+
+// Carregar o iframe do YouTube sob demanda (Lazy Loading no clique)
+window.loadYoutubeVideo = function(container, videoId, title) {
+    if (container.querySelector('iframe')) return; // Já carregou
+    
+    // Injeta o iframe e inicia com autoplay
+    container.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="${title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `;
+};
 
 // Configurar a busca de treinamentos reativa
 function setupTrainingsSearch() {
