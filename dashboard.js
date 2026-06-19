@@ -5,6 +5,7 @@
 
 // Estado Global da Aplicação
 let knowledgeBase = { themes: [], posts: [] };
+let allTrainings = [];
 let activeTab = 'graph';
 let network = null;
 let isPhysicsEnabled = true;
@@ -89,10 +90,13 @@ async function fetchKnowledgeBase() {
         initGrafo();
         generateApostila();
         
+        // Carregar Treinamentos
+        await fetchTrainings();
+        
         // Verificar se há aba especificada na URL (SPA Mandate)
         const urlParams = new URLSearchParams(window.location.search);
         const initialTab = urlParams.get('tab');
-        if (initialTab && ['graph', 'chat', 'pdf'].includes(initialTab)) {
+        if (initialTab && ['graph', 'chat', 'pdf', 'trainings'].includes(initialTab)) {
             switchTab(initialTab);
         } else {
             switchTab('graph'); // Padrão
@@ -159,7 +163,7 @@ function setupEventListeners() {
 // SPA LÓGICA DE NAVEGAÇÃO HORIZONTAL (SPA_HORIZONTAL_MANDATE & NO_PHYSICAL_REDIRECTS)
 // ==========================================================================
 window.switchTab = function(tabId) {
-    if (!['graph', 'chat', 'pdf'].includes(tabId)) return;
+    if (!['graph', 'chat', 'pdf', 'trainings'].includes(tabId)) return;
     
     activeTab = tabId;
     
@@ -169,6 +173,7 @@ window.switchTab = function(tabId) {
     let navBtnId = "nav-graph";
     if (tabId === "chat") navBtnId = "nav-chat";
     if (tabId === "pdf") navBtnId = "nav-pdf";
+    if (tabId === "trainings") navBtnId = "nav-trainings";
     
     const activeBtn = document.getElementById(navBtnId);
     if (activeBtn) activeBtn.classList.add("active");
@@ -178,6 +183,7 @@ window.switchTab = function(tabId) {
     let translateX = "0";
     if (tabId === "chat") translateX = "-100vw";
     if (tabId === "pdf") translateX = "-200vw";
+    if (tabId === "trainings") translateX = "-300vw";
     
     slider.style.transform = `translate3d(${translateX}, 0, 0)`;
     
@@ -989,5 +995,122 @@ function generateApostila() {
 
         chapterDiv.appendChild(postsContainer);
         container.appendChild(chapterDiv);
+    });
+}
+
+// ==========================================================================
+// SEÇÃO 4: TREINAMENTOS (Carregamento Dinâmico, Player e Busca Reativa)
+// ==========================================================================
+
+// Carregar Treinamentos do JSON e renderizar
+async function fetchTrainings() {
+    try {
+        const response = await fetch("treinamentos.json");
+        if (!response.ok) {
+            throw new Error(`Falha ao ler o arquivo JSON de treinamentos: ${response.status}`);
+        }
+        allTrainings = await response.json();
+        renderTrainings(allTrainings);
+        setupTrainingsSearch();
+    } catch (error) {
+        console.error("Erro ao carregar os treinamentos:", error);
+        const container = document.getElementById("trainings-container");
+        if (container) {
+            container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted); font-family: var(--font-outfit);">Erro ao carregar os tutoriais em vídeo.</div>`;
+        }
+    }
+}
+
+// Renderizar cards de treinamentos no container
+function renderTrainings(trainingsList) {
+    const container = document.getElementById("trainings-container");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    
+    if (trainingsList.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted); font-family: var(--font-outfit); font-size: 15px;">Nenhum tutorial encontrado para a pesquisa informada.</div>`;
+        return;
+    }
+    
+    trainingsList.forEach(training => {
+        const card = document.createElement("div");
+        card.className = "training-card";
+        card.setAttribute("data-index", training.index);
+        
+        // Formata os passos em HTML
+        let stepsHtml = "";
+        if (training.steps && training.steps.length > 0) {
+            stepsHtml = `
+                <div class="training-steps">
+                    <h4>Passo a Passo:</h4>
+                    ${training.steps.map((step, idx) => `
+                        <div class="step-item">
+                            <span class="step-num">${idx + 1}.</span>
+                            <span class="step-text">${step}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        // Formata a transcrição com timestamps
+        const transcriptText = training.transcript || "Transcrição não disponível para este vídeo.";
+        
+        card.innerHTML = `
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/${training.video_id}" title="${training.title_pt}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="training-info">
+                <div class="training-header">
+                    <span class="training-num">Tutorial #${training.index}</span>
+                    <h3 class="training-title">${training.title_pt}</h3>
+                </div>
+                <p class="training-description">${training.description_pt}</p>
+                ${stepsHtml}
+                <details class="training-transcript-details">
+                    <summary class="training-transcript-summary">Ver Transcrição Completa</summary>
+                    <div class="training-transcript-content">${transcriptText}</div>
+                </details>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+}
+
+// Configurar a busca de treinamentos reativa
+function setupTrainingsSearch() {
+    const searchInput = document.getElementById("input-search-trainings");
+    if (!searchInput) return;
+    
+    searchInput.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+            renderTrainings(allTrainings);
+            return;
+        }
+        
+        // Divide a query em palavras para correspondência mais flexível
+        const queryWords = query.split(/\s+/).filter(w => w.length > 1);
+        
+        const filtered = allTrainings.filter(training => {
+            const titlePt = (training.title_pt || "").toLowerCase();
+            const titleEn = (training.title || "").toLowerCase();
+            const desc = (training.description_pt || "").toLowerCase();
+            const transcript = (training.transcript || "").toLowerCase();
+            const stepsText = (training.steps || []).join(" ").toLowerCase();
+            
+            // Cada palavra da pesquisa deve bater em algum dos campos
+            return queryWords.every(word => {
+                return titlePt.includes(word) || 
+                       titleEn.includes(word) || 
+                       desc.includes(word) || 
+                       transcript.includes(word) || 
+                       stepsText.includes(word);
+            });
+        });
+        
+        renderTrainings(filtered);
     });
 }

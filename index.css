@@ -240,7 +240,7 @@ header {
 
 #view-slider {
     display: flex;
-    width: 300vw; /* 3 abas = 300vw */
+    width: 400vw; /* 4 abas = 400vw */
     height: 100%;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
@@ -1545,3 +1545,243 @@ div.vis-tooltip {
     pointer-events: none;
 }
 
+/* ==========================================================================
+   SEÇÃO 4: TREINAMENTOS (Vídeos e Passo a Passo)
+   ========================================================================== */
+#view-trainings {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px 24px 120px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+.trainings-banner {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(16, 185, 129, 0.1));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 22px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.trainings-banner-text h2 {
+    font-family: var(--font-outfit);
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(to right, white, var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.trainings-banner-text p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.trainings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 28px;
+    padding-bottom: 40px;
+}
+
+.training-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.training-card:hover {
+    border-color: var(--glass-border-light);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 20px rgba(16, 185, 129, 0.25);
+    transform: translateY(-4px);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    height: 0;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.training-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+}
+
+.training-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.training-num {
+    font-family: var(--font-outfit);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent-green);
+}
+
+.training-title {
+    font-family: var(--font-outfit);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.training-description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.training-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+}
+
+.training-steps h4 {
+    font-family: var(--font-outfit);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.step-item {
+    display: flex;
+    gap: 8px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+.step-num {
+    color: var(--accent-green);
+    font-weight: 700;
+    font-family: var(--font-outfit);
+    min-width: 14px;
+}
+
+.step-text {
+    flex: 1;
+}
+
+.training-transcript-details {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin-top: auto;
+}
+
+.training-transcript-summary {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition-smooth);
+    outline: none;
+}
+
+.training-transcript-summary:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.training-transcript-content {
+    padding: 12px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    max-height: 150px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+    white-space: pre-line;
+}
+
+/* Barra de Busca de Treinamentos */
+.trainings-search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 12px 20px;
+    margin-bottom: 28px;
+    gap: 12px;
+    transition: var(--transition-elastic);
+}
+
+.trainings-search-bar:focus-within {
+    border-color: var(--accent-green);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: scale(1.002);
+}
+
+.trainings-search-bar .search-icon {
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.trainings-search-bar:focus-within .search-icon {
+    color: var(--accent-green);
+}
+
+.trainings-search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-family: var(--font-inter);
+    font-size: 14.5px;
+}
+
+.trainings-search-bar input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}

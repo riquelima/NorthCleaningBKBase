@@ -1,0 +1,482 @@
+[
+  {
+    "index": 1,
+    "title": "How Do I Disable the Popup on Selection in BookingKoala",
+    "title_pt": "Desativar Popup na Seleção de Categorias",
+    "description_pt": "Aprenda a desativar a exibição automática de popups ao selecionar categorias de serviços no formulário de agendamento.",
+    "url": "https://www.youtube.com/watch?v=nh11cb4hzI8",
+    "video_id": "nh11cb4hzI8",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries e abra o formulário desejado.",
+      "Passe o cursor sobre a aba Service Category, selecione a categoria desejada e clique em Options > Edit.",
+      "Role até o final da página e desmarque as caixas Set minimum price e Set minimum time.",
+      "Clique em Next e salve as modificações."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's video we're going to\n[00:21] walk you through how to disable the\n[00:23] popup on selection feature and booking\n[00:25] koala let's get started first head over\n[00:28] to the settings option and click on it\n[00:30] next click on Industries choose the\n[00:33] forms that you want to\n[00:35] modify now hover over the service\n[00:37] category\n[00:39] option this will bring up the various\n[00:42] categories for the services you\n[00:44] offer select the service category you\n[00:46] want to modify and then click the\n[00:49] options button click on edit to modify\n[00:51] the details of this\n[00:53] category now scroll down a bit and\n[00:56] you'll see the option set minimum price\n[00:58] and set minimum time uncheck both of\n[01:01] these\n[01:04] options once you've unchecked these\n[01:06] options don't forget to click the next\n[01:09] and then the save button to apply your\n[01:11] changes and that's it you've\n[01:13] successfully disabled the popup on\n[01:15] selection feature in Booking koala now\n[01:17] your booking process will be smoother\n[01:19] for your customers if you found this\n[01:21] video helpful don't forget to like\n[01:23] comment and subscribe for more tips and\n[01:26] tutorials if you are interested in a\n[01:28] simple to use cleaning business app app\n[01:30] check out clean CRM right now you can\n[01:32] try it out for free for 30 days"
+  },
+  {
+    "index": 2,
+    "title": "How to Easily Schedule Recurring Clients in BookingKoala",
+    "title_pt": "Configurar Frequência de Recorrências",
+    "description_pt": "Aprenda a cadastrar e configurar frequências e repetições de agendamentos de forma automática nos formulários do sistema.",
+    "url": "https://www.youtube.com/watch?v=FGD10980Iw0",
+    "video_id": "FGD10980Iw0",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries > Home Cleaning (ou a indústria desejada).",
+      "Passe o cursor sobre Frequencies e clique em Add a New.",
+      "Insira um nome descritivo e selecione Recurring no Occurrence Time.",
+      "Defina a regra em 'repeats every' (ex: a cada 3 semanas), avance e salve as configurações."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking koala when creating your booking\n[00:20] form make sure to include at least one\n[00:23] frequency frequencies let the system\n[00:25] know how often things happen and help\n[00:27] you avoid double booking making easier\n[00:31] if your business offers recurring\n[00:32] Services you can set up as many\n[00:34] frequencies as you need first navigate\n[00:37] to the setting\n[00:39] section then\n[00:41] Industries home cleaning form hash then\n[00:44] hover over the\n[00:48] frequencies click the add a new button\n[00:50] for\n[00:52] frequency give your frequency a\n[00:54] descriptive name that will be\n[00:55] recognizable both to you and your\n[00:57] clients\n[01:01] now determine whether this frequency\n[01:02] will be for a one-time appointment or a\n[01:04] recurring one for a one-time appointment\n[01:07] select one time from the occurrence time\n[01:10] options for a recurring appointment\n[01:12] select recurring from the occurrence\n[01:14] time options if you've chosen a\n[01:16] recurring appointment you'll need to\n[01:17] specify how often it repeats select the\n[01:20] option that states frequency repeats\n[01:22] every and choose every 3 weeks from the\n[01:25] available intervals once you've filled\n[01:27] out all the necessary information be\n[01:30] sure to click next then save your\n[01:31] settings to apply the recurring\n[01:33] appointment frequency by following these\n[01:35] steps you'll be able to set up your\n[01:37] client's appointments to automatically\n[01:38] recur every 3 weeks without needing to\n[01:41] manually schedule them each time I hope\n[01:43] you found this video helpful if so\n[01:45] remember to subscribe to our Channel and\n[01:47] give it a thumbs up so we can provide\n[01:49] you with more tutorials just like this\n[01:51] one I appreciate your time and I hope to\n[01:53] see you in the next\n[01:55] video if you are interested in a simple\n[01:57] to use cleaning business app check out\n[01:59] clean RM right now you can try it out\n[02:01] for free for 30 days"
+  },
+  {
+    "index": 3,
+    "title": "How to Manage Feedback Options in BookingKoala",
+    "title_pt": "Restringir Feedback e Assinatura de Conclusão",
+    "description_pt": "Configure a plataforma para desativar a permissão de classificação e feedbacks pelos providers, exigindo apenas a assinatura dos clientes.",
+    "url": "https://www.youtube.com/watch?v=6uiWGz-CBI0",
+    "video_id": "6uiWGz-CBI0",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options.",
+      "Clique na aba Provider e desça até a área de Booking.",
+      "Localize a opção do feedback e marque No para desativá-la.",
+      "Certifique-se de que a opção de assinaturas na conclusão está configurada como Customer signatures only."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in Booking koala providers can\n[00:22] give feedback and rate the cleaning for\n[00:24] customers if you want to control this\n[00:26] feature or make sure only customers can\n[00:28] sign off on job completion you can\n[00:30] change the settings here's a guide on\n[00:32] how to do it go to settings click on\n[00:34] General hover over store\n[00:37] options choose the provider\n[00:40] tab go to the booking\n[00:43] section scroll down until you find the\n[00:45] question would you like to activate the\n[00:47] feedback feature by disabling this\n[00:50] option you can ensure that only the\n[00:52] customer has the ability to provide\n[00:53] feedback and rate the\n[00:55] service select no to disable the\n[00:58] feedback and rating feature\n[01:01] also check the settings for job\n[01:03] completion signatures to make sure\n[01:04] they're set up for customer signatures\n[01:06] only by adjusting these settings you can\n[01:09] make the feedback and signature\n[01:11] processes smoother ensuring Clarity and\n[01:13] consistency for both providers and\n[01:15] customers that's all for today's booking\n[01:17] koala tutorial if you found this\n[01:19] information helpful give us a thumbs up\n[01:21] and share it with your friends and don't\n[01:23] forget to subscribe for more booking\n[01:25] koala tips and tricks thanks for\n[01:27] watching and we'll see you in the next\n[01:28] video if you are interested in a simpl\n[01:31] to use cleaning business app check out\n[01:33] clean CRM right now you can try it out\n[01:35] for free for 30 days"
+  },
+  {
+    "index": 4,
+    "title": "How to Set Cash/Check Only in BookingKoala",
+    "title_pt": "Agendamento via Dinheiro/Cheque (Cash/Check Only)",
+    "description_pt": "Configure sua loja para aceitar apenas dinheiro e cheque como formas de pagamento, retirando a necessidade de cartão de crédito nas reservas.",
+    "url": "https://www.youtube.com/watch?v=auysVSRXTIc",
+    "video_id": "auysVSRXTIc",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options.",
+      "Na aba General, clique em Store Info e desça até Accepted forms of payment.",
+      "Marque apenas a opção Cash/Check, deixando a opção de cartões desmarcada.",
+      "Salve a configuração. O cliente agendará sem exigir dados de cartão."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today we're going to show you how\n[00:22] to set cash check only in Booking koala\n[00:25] this form will allow customers to select\n[00:27] a date and time without needing to\n[00:28] provide payment details let's get\n[00:30] started go to settings in the main menu\n[00:33] click on\n[00:35] General and then store\n[00:37] options then in the general\n[00:39] tab click on the store info scroll down\n[00:42] to accepted forms of\n[00:44] payment here you can allow cash check\n[00:47] credit card or\n[00:48] both but just select the cash check\n[00:51] payment option if you only want the cash\n[00:54] check and that's it now you've set up\n[00:56] your store for cash or check payments if\n[00:58] you found this helpful please please\n[01:00] like And subscribe see you next time if\n[01:03] you are interested in a simpl to use\n[01:05] cleaning business app check out clean\n[01:06] CRM right now you can try it out for\n[01:09] free for 30 days"
+  },
+  {
+    "index": 5,
+    "title": "How to Manage Team Availability Without Approval in BookingKoala",
+    "title_pt": "Aprovação de Folgas de Providers",
+    "description_pt": "Configure se as alterações de disponibilidade dos providers em datas que já possuem limpezas ativas necessitam de aprovação prévia do admin.",
+    "url": "https://www.youtube.com/watch?v=8ELpfm5E6vk",
+    "video_id": "8ELpfm5E6vk",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options.",
+      "Clique na aba Provider e depois no submenu Scheduling.",
+      "Localize a pergunta sobre o que fazer se houver agendamentos ativos ao provider solicitar folga.",
+      "Selecione Send request to admin for approval e salve a página."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's tutorial we'll walk you\n[00:22] through how to allow your team members\n[00:23] or service providers to schedule their\n[00:25] availability without requiring admin\n[00:27] approval in Booking koala let's get\n[00:30] started go to the settings tab which\n[00:32] you'll find on the left side of your\n[00:34] screen in the settings menu click on\n[00:37] General once you're in the general\n[00:39] section hover over store\n[00:42] options select the provider\n[00:46] tab click on the scheduling section to\n[00:49] access your provider availability\n[00:52] settings now you'll see a question what\n[00:55] will happen if there are active bookings\n[00:57] in the date range when providers try to\n[00:59] modify or take a day\n[01:01] off choose the option that says send\n[01:04] request to admin for approval this will\n[01:07] send a request to the admin or staff in\n[01:09] the manage availability section under\n[01:11] the providers tab allowing you to\n[01:13] approve or decline the request after\n[01:16] selecting the approval option make sure\n[01:18] to click on the save button at the\n[01:20] bottom of the page to apply these\n[01:22] changes and that's it I hope this\n[01:24] tutorial helped you set up your provider\n[01:26] scheduling in Booking koala if you found\n[01:28] this video useful don't forget to like\n[01:31] comment and subscribe for more helpful\n[01:33] tips and if you have any questions or\n[01:35] need further assistance feel free to\n[01:37] drop them in the comments below thanks\n[01:39] for watching and see you in the next\n[01:41] video if you are interested in a simple\n[01:43] to use cleaning business app check out\n[01:45] clean CRM right now you can try it out\n[01:47] for free for 30 days"
+  },
+  {
+    "index": 6,
+    "title": "How to Resolve Missing Location in BookingKoala Form",
+    "title_pt": "Corrigir Aba de Localidades Invisível",
+    "description_pt": "Saiba o que fazer se a aba de localizações (Locations dropdown) não estiver aparecendo ao carregar o formulário de reserva.",
+    "url": "https://www.youtube.com/watch?v=hmsbNT0HCME",
+    "video_id": "hmsbNT0HCME",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options e defina as configurações de localidade como Name-based.",
+      "Acesse Settings > Industries, selecione a indústria e clique em Settings.",
+      "Em Form Settings, edite o formulário e mude a pergunta sobre gerenciamento de locais para Name-based também.",
+      "Salve as modificações, atualize a página e limpe o cache do navegador."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's video we're going to\n[00:21] solve a common issue that some booking\n[00:23] koala users face if you've tried to add\n[00:26] a new location to your booking koala\n[00:28] form and found that the locations tab\n[00:30] isn't showing up in the drop-- down menu\n[00:32] even though you've set location settings\n[00:34] to name based don't worry today I'll\n[00:37] walk you through the stepbystep process\n[00:38] to fix it let's Dive Right\n[00:41] In First in the Le hand sidebar click on\n[00:44] settings then click on\n[00:46] General and select store\n[00:51] options in the location setting section\n[00:54] make sure it's set to name\n[00:56] based if it's not change it to name\n[00:58] based\n[01:00] and save your\n[01:02] changes now let's move on to the second\n[01:04] place where you can enable location\n[01:06] settings this one's inside the industry\n[01:09] settings from the settings menu click on\n[01:13] Industries select your specific industry\n[01:15] from the list if you have more than one\n[01:18] industry now click on\n[01:21] settings scroll down to the form\n[01:23] settings\n[01:26] section under choose the forms you want\n[01:28] to modify find the form you're working\n[01:30] with click options then\n[01:34] edit Now look for the question how would\n[01:36] you like the system to manage your\n[01:38] locations make sure it's set to name\n[01:41] based by setting both your general and\n[01:44] Industry settings to name based the\n[01:46] location option should now appear\n[01:48] correctly in your form dropdown once\n[01:50] you've made both of these changes I\n[01:52] recommend refreshing your page and\n[01:54] clearing your browser's cache just to\n[01:56] make sure the settings take effect and\n[01:58] that's it you should now see the\n[02:00] locations tab show up in your forms drop\n[02:02] down menu if you found this video\n[02:04] helpful don't forget to give it a thumbs\n[02:06] up and subscribe for more tips and\n[02:07] tutorials on booking koala and other\n[02:09] awesome tools thanks for watching and\n[02:11] I'll see you in the next\n[02:13] video if you are interested in a simple\n[02:15] to use cleaning business app check out\n[02:17] clean CRM right now you can try it out\n[02:20] for free for 30 days"
+  },
+  {
+    "index": 7,
+    "title": "How to Enable Clock-In for a Provider in BookingKoala",
+    "title_pt": "Habilitar Registro de Ponto (Clock-In)",
+    "description_pt": "Como configurar e ativar a funcionalidade de registro de ponto (Clock-In) para prestadores de serviço registrarem o início e o fim de seus expedientes.",
+    "url": "https://www.youtube.com/watch?v=Rq7Y-hGscmU",
+    "video_id": "Rq7Y-hGscmU",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options.",
+      "Clique na aba Provider e localize as configurações de Time & Attendance (Tempo e Presença).",
+      "Altere o status de ativação de registro de ponto/Clock-In para Yes.",
+      "Configure as regras de raio de tolerância de GPS (se necessário) e salve."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's quick tutorial I'll\n[00:21] show you how to enable the clock in and\n[00:23] clock out feature for your providers in\n[00:25] Booking koala let's get\n[00:27] started first click on the settings\n[00:31] next in the settings menu click on\n[00:34] General now hover over the store\n[00:39] options once you're in store options\n[00:41] click on the provider tab to access\n[00:43] provider specific\n[00:45] settings you'll see the option for GPS\n[00:47] and time\n[00:49] logs look for the question would you\n[00:52] like to activate clocking in clocking\n[00:54] out\n[00:55] feature make sure to select yes to\n[00:57] activate the clock in/ clock out feature\n[01:00] for your\n[01:01] providers next you'll see another\n[01:03] question what information would you like\n[01:05] to track for your providers\n[01:07] teams select the option keep track of\n[01:10] both time stamps and path GPS so you can\n[01:13] see both the time and the GPS location\n[01:15] when your provider clocks in and\n[01:17] out once you've made these selections\n[01:19] don't forget to click the save button at\n[01:21] the bottom to save your settings that's\n[01:24] it you're all set to track your\n[01:25] provider's clockin and clock outs in\n[01:27] Booking koala if this video helped give\n[01:30] it a thumbs up and subscribe for more\n[01:32] easy tips that's all thanks for watching\n[01:34] and see you in the next\n[01:36] video if you are interested in a simple\n[01:39] to use cleaning business app check out\n[01:41] clean CRM right now you can try it out\n[01:43] for free for 30 days"
+  },
+  {
+    "index": 8,
+    "title": "How to Remove Hourly as a Booking Option in BookingKoala",
+    "title_pt": "Remover Opção de Agendamento por Hora (Hourly)",
+    "description_pt": "Como configurar seu formulário de agendamento para remover a opção de contratação por hora, deixando apenas serviços de tarifa fixa.",
+    "url": "https://www.youtube.com/watch?v=GWy_BXQNJ64",
+    "video_id": "GWy_BXQNJ64",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries e selecione o formulário desejado.",
+      "Vá na aba Pricing Parameters (Parâmetros de Precificação).",
+      "Desative ou exclua o parâmetro baseado em horas (Hourly Rate).",
+      "Avance e salve o formulário para refletir apenas os valores fixos (Flat Rate)."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's video I'll show you how\n[00:22] to remove the hourly option from your\n[00:24] booking form in Booking koala let's get\n[00:27] started on the leftand menu click on\n[00:31] settings in the settings\n[00:33] menu find and click on\n[00:36] Industries click on the form you want to\n[00:38] edit hover over service\n[00:44] category click on the specific category\n[00:46] you want to edit such as\n[00:50] hourly once you're in the category\n[00:52] settings scroll down to the display\n[00:55] option change the display setting to\n[00:58] admin only\n[01:00] don't forget to hit the next and then\n[01:01] the save button at the bottom of the\n[01:03] page to apply your\n[01:05] changes and that's\n[01:07] it you've successfully removed the\n[01:09] hourly option from your booking koala\n[01:11] form if you found this tutorial helpful\n[01:14] make sure to like subscribe and hit that\n[01:16] notification Bell for more tips and\n[01:18] tricks thanks for watching and see you\n[01:20] in the next\n[01:22] video if you are interested in a simpl\n[01:24] to use cleaning business app check out\n[01:26] clean CRM right now you can try it out\n[01:28] for free for 30 days face"
+  },
+  {
+    "index": 9,
+    "title": "How to Customize First Time and Recurring Amounts in BookingKoala",
+    "title_pt": "Personalizar Valores de Primeira Faxina e Recorrências",
+    "description_pt": "Como aplicar descontos e precificações customizadas para clientes recorrentes versus novos clientes que agendam pela primeira vez.",
+    "url": "https://www.youtube.com/watch?v=U93XNonlaXM",
+    "video_id": "U93XNonlaXM",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries > Frequencies.",
+      "Crie ou edite uma frequência de agendamento recorrente.",
+      "Na seção de descontos, insira a porcentagem ou valor fixo de desconto para esta frequência.",
+      "Salve a configuração para aplicar o desconto automaticamente a partir do segundo agendamento."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today we're diving into a quick\n[00:21] tutorial on how to fully customize and\n[00:23] adjust the first-time service amount and\n[00:25] recurring amounts separately let's get\n[00:27] started first head over to your settings\n[00:31] next locate and select\n[00:33] Industries click on the form that you\n[00:36] want to\n[00:37] modify now hover over extras this is\n[00:39] where you can customize additional\n[00:42] charges select the extra that you want\n[00:44] to modify click on options then hit edit\n[00:48] to make your\n[00:49] adjustments scroll down to the bottom\n[00:51] and check the box that says apply only\n[00:54] to the first appointment this ensures\n[00:57] that your customization only affects the\n[00:59] first book in a recurring\n[01:01] service don't forget to click next and\n[01:04] then the save button at the bottom of\n[01:06] the page repeat this step until you've\n[01:08] set up all of your\n[01:10] extras if you found this tutorial\n[01:12] helpful give it a thumbs up and don't\n[01:15] forget to subscribe for more tips and\n[01:17] tricks drop your questions in the\n[01:19] comments below and we'll see you in the\n[01:21] next\n[01:22] video if you are interested in a simpl\n[01:24] to use cleaning business app check out\n[01:26] clean CRM right now you can try it out\n[01:29] for free for 30 days"
+  },
+  {
+    "index": 10,
+    "title": "How to Require Customer Info Before Prices in BookingKoala",
+    "title_pt": "Exigir Dados do Cliente Antes de Exibir Preços",
+    "description_pt": "Configuração de privacidade no formulário de reserva para obrigar o preenchimento de nome e e-mail antes que o cliente veja a precificação.",
+    "url": "https://www.youtube.com/watch?v=hr9b5bn03cQ",
+    "video_id": "hr9b5bn03cQ",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries e selecione a indústria ativa.",
+      "Clique em Settings da indústria e depois nas configurações gerais de formulários.",
+      "Ative a opção 'Require customer information before displaying price'.",
+      "Salve para garantir a captura de leads antes da exibição dos valores."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today I'll show you how to set up\n[00:21] a two-step booking form to collect\n[00:22] customer info before showing prices\n[00:25] click on settings from the leftand\n[00:27] menu within the settings menuel select\n[00:31] Industries click on settings again and\n[00:33] then find form\n[00:35] settings from the options available\n[00:37] select the booking form you want to\n[00:40] modify you'll be prompted with a\n[00:43] question would you like a one-step twep\n[00:46] or multi-step booking form on the\n[00:48] customer\n[00:49] end select\n[00:52] twostep next you'll see the question do\n[00:55] you want customers to enter email on the\n[00:56] first step of the booking\n[00:58] form select no keep in mind to capture\n[01:02] customer information within the\n[01:03] integrated campaign you will need the\n[01:05] top tier subscription from booking coala\n[01:08] make sure your plan supports this\n[01:10] feature click on the save button at the\n[01:12] bottom of the page to save the changes\n[01:15] and that's it your two-step booking form\n[01:17] is all set if you enjoyed this video\n[01:19] give it a thumbs up and subscribe for\n[01:21] more great content that's all thank you\n[01:23] for\n[01:24] watching if you are interested in a\n[01:26] simple to use cleaning business app\n[01:28] check out clean CRM right now you can\n[01:31] try it out for free for 30 days"
+  },
+  {
+    "index": 11,
+    "title": "How to Set Up Contractor Notifications in BookingKoala",
+    "title_pt": "Configurar Notificações para Contractors (Terceirizados)",
+    "description_pt": "Como gerenciar e habilitar os alertas automáticos por SMS ou e-mail enviados aos prestadores terceirizados sobre novos serviços.",
+    "url": "https://www.youtube.com/watch?v=zGieZKudXiY",
+    "video_id": "zGieZKudXiY",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Notifications > Provider.",
+      "Selecione as notificações de 'New Booking Assigned' (Novo Agendamento Atribuído).",
+      "Ative e configure os canais de comunicação desejados (E-mail e/ou SMS).",
+      "Salve para enviar automaticamente os detalhes dos trabalhos atribuídos."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today I'm going to show you how to\n[00:21] configure your booking koala dashboard\n[00:23] so your contractors get real-time\n[00:25] notifications and can grab jobs\n[00:26] instantly let's Dive\n[00:28] In first things first go to\n[00:31] settings then click on General to open\n[00:34] up your general\n[00:35] settings next hover over store\n[00:39] options go to the scheduling\n[00:45] tab now we're getting into the key\n[00:47] settings that control how your\n[00:49] contractors will receive job\n[00:51] notifications you'll see a few options\n[00:53] here that need to be configured\n[00:55] correctly first you'll see the option\n[00:58] would you like to allow your providers\n[01:00] to see bookings in the unassigned folder\n[01:02] and accept\n[01:03] them if you want your contractors to be\n[01:05] able to view and grab jobs as they come\n[01:08] in make sure to select yes this allows\n[01:11] your providers to pick up jobs that fit\n[01:13] their availability and settings next\n[01:16] you'll see the option would you like to\n[01:18] allow your providers to see bookings in\n[01:20] the unassigned folder even if not\n[01:23] applicable if you want to make sure that\n[01:25] only jobs that fit within the provider's\n[01:27] profile settings appear in the\n[01:29] unassigned folder choose no this keeps\n[01:31] things relevant for your team and\n[01:33] prevents unnecessary\n[01:37] notifications the final key setting here\n[01:39] is would you like all your providers to\n[01:41] be notified when a new booking comes\n[01:43] into the unassigned folder this one is\n[01:45] important because it ensures that your\n[01:47] contractors receive immediate\n[01:49] notifications whenever a new job is\n[01:51] available for real-time updates select\n[01:54] yes that way your team will be the first\n[01:56] to know when new bookings are placed in\n[01:58] the unassigned folder\n[02:00] once you've updated these settings don't\n[02:02] forget to save your changes this ensures\n[02:04] your contractors will start receiving\n[02:06] those real-time notifications right away\n[02:08] and that's it now your cleaners and\n[02:10] subcontractors will receive real-time\n[02:12] notifications and be able to grab jobs\n[02:14] as they become available I hope this\n[02:16] tutorial was helpful if you found it\n[02:18] useful don't forget to give this video a\n[02:20] thumbs up and subscribe to the channel\n[02:22] for more business tips and tutorials\n[02:24] drop any questions you have in the\n[02:26] comments below and I'll be sure to help\n[02:28] you out thanks for watching and I'll see\n[02:30] you in the next video if you are\n[02:32] interested in a simpl to use cleaning\n[02:34] business app check out clean CRM right\n[02:36] now you can try it out for free for 30\n[02:38] days"
+  },
+  {
+    "index": 12,
+    "title": "How To Fix the Pricing Issue with Extras in BookingKoala",
+    "title_pt": "Corrigir Erro de Preço nos Extras (Adicionais)",
+    "description_pt": "Solução de problemas para casos em que os extras adicionados ao agendamento não calculam o preço correto ou multiplicam incorretamente.",
+    "url": "https://www.youtube.com/watch?v=ms6AP1-hlHc",
+    "video_id": "ms6AP1-hlHc",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries > Extras.",
+      "Selecione o item adicional que está apresentando erro e clique em Edit.",
+      "Verifique as configurações de precificação por quantidade ou precificação fixa do extra.",
+      "Certifique-se de preencher os valores para todas as frequências e clique em Save."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's video we'll be walking\n[00:21] through how to fix the extra pricing for\n[00:23] your services in Booking koala if you've\n[00:26] noticed that the extras are not adding\n[00:27] up correctly we'll show you exactly how\n[00:30] to correct that let's get\n[00:32] started first click on\n[00:34] settings then navigate to the\n[00:38] industries next select the form you want\n[00:40] to\n[00:42] modify hover over the\n[00:48] extras now that you're in the extras\n[00:50] section you'll see a list of all the\n[00:52] extras you\n[00:53] offer find the extra that you want to\n[00:56] modify let's say it's for Windows\n[01:00] click on\n[01:01] options then click on\n[01:06] edit scroll down to find the quantity\n[01:08] based\n[01:09] setting this is where you can control\n[01:11] how much the extra cost depending on the\n[01:14] quantity make sure this option is set to\n[01:17] yes next you'll want to enter the\n[01:19] maximum quantity allowed for the\n[01:22] extra then here adjust the price\n[01:25] accordingly for example if the extra\n[01:27] should cost $15 per window enter that\n[01:30] here you can also add any extra time\n[01:32] needed for the\n[01:33] service to ensure this change only\n[01:36] applies to the first\n[01:37] appointment check the box that says\n[01:39] apply only to the first\n[01:42] appointment this will prevent the\n[01:43] pricing from repeating for multiple\n[01:46] bookings once you've made your\n[01:48] adjustments click\n[01:49] next after that hit the save button to\n[01:52] apply your\n[01:53] changes and that's it you've\n[01:55] successfully updated the pricing for\n[01:57] your extras in Booking koala if you\n[02:00] found this tutorial helpful don't forget\n[02:02] to like comment and subscribe for more\n[02:04] tips if you have any questions or run\n[02:07] into any issues drop a comment below\n[02:09] thanks for watching and we'll see you in\n[02:11] the next video if you are interested in\n[02:13] a simpl to use cleaning business app\n[02:15] check out clean CRM right now you can\n[02:18] try it out for free for 30 days"
+  },
+  {
+    "index": 13,
+    "title": "How to Resolve the Booking Koala Price Display Issue",
+    "title_pt": "Resolver Problema de Exibição de Preços no Dashboard",
+    "description_pt": "O que fazer quando os valores totais de agendamento não são atualizados na tela ou exibem informações nulas para o cliente.",
+    "url": "https://www.youtube.com/watch?v=ubC4ETdHBOE",
+    "video_id": "ubC4ETdHBOE",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options e limpe as configurações de cache locais da plataforma.",
+      "Verifique se o gateway de pagamento (Stripe) está conectado e ativo no modo correto.",
+      "Certifique-se de que a precificação de cada categoria de serviço está devidamente preenchida.",
+      "Teste em uma guia anônima após salvar os dados no painel do administrador."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's quick tutorial I'll\n[00:21] show you how to fix an issue in Booking\n[00:23] koala where prices aren't showing up in\n[00:25] the booking summary let's get\n[00:27] started first go to your settings\n[00:31] once you're in the settings menu go\n[00:33] ahead and select\n[00:34] General next hover over the store\n[00:39] options all right now let's head over to\n[00:41] the customer\n[00:45] tab now click the booking\n[00:51] section here you'll find a question that\n[00:53] says do you want the customer to see the\n[00:55] entire payment summary on the booking\n[00:56] form or only the total\n[00:58] price make make sure to set this option\n[01:00] to customer front end this option lets\n[01:03] you add a learn more button to show the\n[01:05] payment summary details only new\n[01:07] customers or customers who are not\n[01:09] logged in will see the full payment\n[01:11] summary once you've done that don't\n[01:13] forget to save your changes and that's\n[01:16] it now your customers can see the full\n[01:18] price breakdown while booking if you\n[01:20] found this helpful don't forget to like\n[01:22] And subscribe for more tips thank you\n[01:24] for watching and see you in the next\n[01:26] video if you are interested in a simple\n[01:29] to use cleaning business business app\n[01:30] check out clean CRM right now you can\n[01:33] try it out for free for 30 days"
+  },
+  {
+    "index": 14,
+    "title": "How Can I Remove the Booking Koala Logo from My Emails",
+    "title_pt": "Remover Logo do BookingKoala dos E-mails",
+    "description_pt": "Como personalizar o template de e-mails para remover a marca d'água oficial do BookingKoala no rodapé das mensagens dos clientes.",
+    "url": "https://www.youtube.com/watch?v=UDJ58pTsWDc",
+    "video_id": "UDJ58pTsWDc",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Email Settings.",
+      "Role até a área de configurações de rodapé e marca (Branding).",
+      "Desative a opção 'Display BookingKoala Logo' ou limpe a marca padrão.",
+      "Clique em Save para aplicar em todas as mensagens automáticas."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today we're diving into a quick\n[00:21] and easy tutorial on how to remove the\n[00:23] booking koala logo from your emails\n[00:25] let's get started click on settings\n[00:29] select design forms\n[00:30] website next click on website builder\n[00:33] and\n[00:36] themes you'll see the option to\n[00:38] customize\n[00:39] theme go ahead and click on\n[00:43] that in the settings\n[00:45] menu find the option that says powered\n[00:47] by booking koala\n[00:49] branding toggle this option off to\n[00:51] disable the\n[00:53] logo don't forget to scroll down click\n[00:57] the save button at the bottom of the\n[00:58] page\n[01:00] finally head back to the top of the page\n[01:02] and click save and publish to apply your\n[01:04] changes and that's it you've\n[01:06] successfully removed the booking koala\n[01:08] logo from your emails if you found this\n[01:10] video helpful please give it a thumbs up\n[01:13] subscribe for more tutorials and drop a\n[01:15] comment if you have any questions thanks\n[01:17] for watching and see you in the next\n[01:20] video if you are interested in a simple\n[01:22] to use cleaning business app check out\n[01:24] clean CRM right now you can try it out\n[01:26] for free for 30 days"
+  },
+  {
+    "index": 15,
+    "title": "BookingKoala - Show Different Pricing Parameters for Each Service Category",
+    "title_pt": "Exibir Parâmetros de Preço Diferentes por Categoria",
+    "description_pt": "Como configurar formulários de agendamento para usar precificação diferente (ex: número de quartos na limpeza comum vs. horas na limpeza comercial).",
+    "url": "https://www.youtube.com/watch?v=CwS2UNA7B90",
+    "video_id": "CwS2UNA7B90",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries e clique nas categorias de serviço.",
+      "Associe parâmetros de preço distintos para cada categoria desejada.",
+      "Em Form Settings, verifique se a exibição condicional de parâmetros está ativada.",
+      "Salve as regras para o formulário se adaptar conforme a seleção do cliente."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking koala today we'll learn how to\n[00:21] set different pricing for each service\n[00:22] category let's Dive Right\n[00:24] In go to\n[00:26] settings then Industries and your\n[00:29] industries name\n[00:31] then choose the form that you want to\n[00:33] modify and then choose service\n[00:37] category so here edit the category to\n[00:39] which you want to add the\n[00:41] price for example the basic\n[00:44] clean from here scroll\n[00:49] down then Mark the set service category\n[00:52] price and then enter the\n[00:57] price after that you can click next and\n[00:59] then you're done that's all if you are\n[01:03] interested in a simpl to use cleaning\n[01:04] business app check out clean CRM right\n[01:07] now you can try it out for free for 30\n[01:09] days"
+  },
+  {
+    "index": 16,
+    "title": "Display Different Totals for First Cleaning and Subsequent Cleanings",
+    "title_pt": "Exibir Totais Diferentes para Primeira Faxina e Subsequentes",
+    "description_pt": "Como deixar claro no carrinho e no resumo do pedido o valor cheio da primeira limpeza e o valor promocional das recorrentes.",
+    "url": "https://www.youtube.com/watch?v=3j-DI-I1vVg",
+    "video_id": "3j-DI-I1vVg",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options > General.",
+      "No submenu Booking, localize a opção de exibição do resumo de preços.",
+      "Habilite a exibição separada para 'First cleaning price' e 'Subsequent cleaning price'.",
+      "Salve para detalhar as taxas de forma transparente para o cliente no site."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today I'm going to show you how to\n[00:21] set different prices for the first\n[00:23] cleaning and recurring cleanings in your\n[00:24] home cleaning business plus I'll show\n[00:27] you how to display both prices in the\n[00:28] summary box let let's get\n[00:31] started go to\n[00:33] settings then\n[00:35] Industries choose the form that you want\n[00:37] to modify click\n[00:43] frequencies if you want the first\n[00:45] appointment of a recurring service to\n[00:47] always have the same length as a\n[00:48] one-time appointment choose the Box\n[00:51] exclude first appointment and use\n[00:52] original onetime job length a higher\n[00:55] discount is offered for more frequent\n[00:57] appointments and some businesses that\n[00:58] base their discounts on on frequency\n[01:01] choose whether the discount should be\n[01:03] applied to all bookings or if the first\n[01:05] book should be excluded from the\n[01:07] discount if you were going to set a\n[01:08] frequency\n[01:09] discount thank you for watching if you\n[01:12] are interested in a simple to use\n[01:14] cleaning business app check out clean\n[01:16] CRM right now you can try it out for\n[01:18] free for 30 days"
+  },
+  {
+    "index": 17,
+    "title": "How to Embed a BookingKoala Form On Your Site",
+    "title_pt": "Como Incorporar (Embed) o Formulário no Seu Site",
+    "description_pt": "Como obter o código HTML Iframe oficial do BookingKoala para colar no WordPress, Webflow ou Wix da sua empresa.",
+    "url": "https://www.youtube.com/watch?v=tFFdAXy4XwI",
+    "video_id": "tFFdAXy4XwI",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Design Forms e selecione o formulário configurado.",
+      "Clique em Share/Embed para exibir o código de incorporação.",
+      "Copie o código Iframe gerado automaticamente pela plataforma.",
+      "Cole no bloco HTML do editor do seu site (WordPress, Webflow, etc.) e publique."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking koala in today's video we'll\n[00:21] show you how to embed your booking koala\n[00:23] forms into your website let's get\n[00:25] started you can easily embed your\n[00:27] booking quala forms into your existing\n[00:29] website if you already have one and\n[00:31] don't need to use the booking quala\n[00:33] website builder that comes with your\n[00:35] account so to embed a form you have to\n[00:37] go to\n[00:39] settings click the design forms in\n[00:41] website then embed forms this will\n[00:44] direct you to a page with codes and\n[00:45] references to each of the\n[00:47] forms copy the\n[00:49] code and all you have to do is to paste\n[00:51] it on your\n[00:53] website or you have to add a HTML code\n[00:55] and then paste it there\n[01:00] so this is what it looks like after you\n[01:02] added it to your page that's all thank\n[01:04] you for\n[01:05] watching if you are interested in a\n[01:07] simple to use cleaning business app\n[01:09] check out clean CRM right now you can\n[01:11] try it out for free for 30 days"
+  },
+  {
+    "index": 18,
+    "title": "How to Fix BookingKoala Not Showing Upcoming Bookings In BookingKoala",
+    "title_pt": "Corrigir Falha de Agendamentos Futuros Invisíveis",
+    "description_pt": "Solução para prestadores que não visualizam seus próximos agendamentos atribuídos no calendário ou aplicativo móvel.",
+    "url": "https://www.youtube.com/watch?v=G8Tgw82evCE",
+    "video_id": "G8Tgw82evCE",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options > Provider.",
+      "No painel de calendário, ative a quantidade máxima de dias futuros visíveis aos providers.",
+      "Certifique-se de que a configuração está definida como maior do que 0 (ex: 30 ou 60 dias).",
+      "Peça para o provider fazer logoff e login no aplicativo após salvar."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala hey everyone welcome back to our\n[00:22] Channel if you're struggling with\n[00:23] booking koala and can't see your\n[00:24] upcoming bookings you're in the right\n[00:26] place today I'm going to walk you\n[00:28] through a quick fix to get everything\n[00:30] back on track let's dive\n[00:32] in first head to your\n[00:34] settings go to General then store\n[00:37] options and click on\n[00:40] scheduling Now look for the section\n[00:42] labeled recurring bookings and click on\n[00:44] it to expand you'll see a question how\n[00:46] would you like the system to schedule\n[00:48] recurring\n[00:49] bookings choose 6 months of appointments\n[00:52] a maximum of 12\n[00:54] bookings next make sure you enable this\n[00:56] option would you like to show all\n[00:58] upcoming bookings for recurring schedule\n[01:01] even if the schedule is not yet\n[01:03] confirmed select yes and don't forget to\n[01:07] hit that save button to apply the\n[01:09] changes that's it you should now be able\n[01:12] to see all your upcoming bookings\n[01:14] without any issues if you found this\n[01:16] video helpful give it a thumbs up and\n[01:18] don't forget to subscribe for more tips\n[01:20] and tricks thanks for watching and I'll\n[01:22] see you in the next\n[01:24] video if you are interested in a simpl\n[01:26] to ous cleaning business app check out\n[01:28] clean CRM right now now you can try it\n[01:30] out for free for 30 days"
+  },
+  {
+    "index": 19,
+    "title": "How Can I Simplify Provider Selection for New Customers In BookingKoala",
+    "title_pt": "Simplificar Seleção de Providers para Novos Clientes",
+    "description_pt": "Como configurar o agendamento para atribuir a faxina automaticamente de acordo com a disponibilidade, sem deixar o cliente escolher o prestador.",
+    "url": "https://www.youtube.com/watch?v=p4H_XWXoX4w",
+    "video_id": "p4H_XWXoX4w",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options > General.",
+      "Sob a aba Booking, encontre a configuração 'Allow customers to choose provider'.",
+      "Marque como No (Não) para que o sistema execute a inteligência de alocação automática.",
+      "Salve a configuração para simplificar e acelerar o checkout."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala hey everyone welcome back to our\n[00:21] Channel today we're diving into booking\n[00:24] koala's feature that lets contractors\n[00:26] accept or decline job requests just\n[00:29] follow these simple steps this feature\n[00:31] helps manage bookings by allowing\n[00:33] contractors to choose which jobs they\n[00:35] want to take on let's get started hey\n[00:38] everyone welcome back to our Channel\n[00:40] today we're going to walk through how to\n[00:42] manage the provider selection option in\n[00:44] your booking system if you're finding\n[00:46] that customers are confused by having to\n[00:48] choose a provider I've got you covered\n[00:51] let's get\n[00:52] started click settings on the left side\n[00:54] of the\n[00:55] screen in the settings menu select\n[00:58] General all right under general settings\n[01:01] click on store\n[01:02] options next within store options go\n[01:05] ahead and select\n[01:06] scheduling click on booking options to\n[01:09] access the booking\n[01:10] settings scroll down until you see the\n[01:13] question do you want to activate the\n[01:15] specific provider option for your\n[01:17] customers here you have two\n[01:20] options select yes if you want to enable\n[01:23] the option for customers to choose a\n[01:24] specific provider when\n[01:26] booking select no if you want to disable\n[01:29] this requirement so new customers won't\n[01:30] need to know the provider\n[01:32] names don't forget to click save after\n[01:34] making any\n[01:36] changes that's it now you know how to\n[01:38] manage the provider selection option in\n[01:40] your booking system if you found this\n[01:42] video helpful give it a thumbs up and\n[01:44] subscribe for more tips drop any\n[01:46] questions you have in the comments below\n[01:48] thanks for watching I hope to see you in\n[01:50] the next\n[01:52] video if you are interested in a simpl\n[01:54] to ous cleaning business app check out\n[01:56] clean CRM right now you can try it out\n[01:59] for free for 30 days"
+  },
+  {
+    "index": 20,
+    "title": "How to Set Different Prices for Each Location on BookingKoala",
+    "title_pt": "Definir Preços Diferentes por Cidade ou Região (Location)",
+    "description_pt": "Como usar a precificação regionalizada para cobrar taxas de deslocamento ou valores diferentes de faxina com base na localidade.",
+    "url": "https://www.youtube.com/watch?v=SkOdl_C9zZE",
+    "video_id": "SkOdl_C9zZE",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options > Location.",
+      "Crie ou edite as localidades de cobertura do seu negócio.",
+      "Em Industries > Pricing, configure tabelas de preços específicas para cada zona ou ZIP Code.",
+      "Salve e teste inserindo diferentes localidades de agendamento no site."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala hey there welcome back to our\n[00:22] Channel today we're diving into how you\n[00:24] can set different prices for each\n[00:26] location using booking koala if you're\n[00:29] ready to customize your pricing based on\n[00:31] where your services are offered you're\n[00:33] in the right place let's get\n[00:36] started first things first head over to\n[00:38] your booking koala dashboard and click\n[00:40] on\n[00:41] settings next go to Industries and\n[00:43] select the industry you want to\n[00:45] adjust once you're there choose the form\n[00:48] you want to work\n[00:49] on now hover over the service category\n[00:55] section click on\n[00:57] dependencies then in the dependency tab\n[01:00] scroll down to the question should the\n[01:02] service category show based on the\n[01:04] location and set it to\n[01:07] yes you'll now see options for each\n[01:09] location listed\n[01:11] below to show a service category in a\n[01:13] specific location check the box next to\n[01:16] that location to hide it simply uncheck\n[01:19] the\n[01:20] box once you're done click the save\n[01:23] button at the bottom of the page to save\n[01:25] your\n[01:26] changes and there you have it you've\n[01:28] successfully set up location specific\n[01:31] pricing in Booking koala if you found\n[01:33] this tutorial helpful make sure to give\n[01:35] it a thumbs up and hit that subscribe\n[01:37] button for more tips and\n[01:39] tricks if you are interested in a simpl\n[01:42] to use cleaning business app check out\n[01:44] clean CRM right now you can try it out\n[01:46] for free for 30 days"
+  },
+  {
+    "index": 21,
+    "title": "How to Resolve Card Hold Issues in BookingKoala",
+    "title_pt": "Resolver Problemas de Pré-Autorização de Cartões (Card Hold)",
+    "description_pt": "O que fazer quando a pré-autorização de segurança no cartão de crédito do cliente falha antes da limpeza ser realizada.",
+    "url": "https://www.youtube.com/watch?v=OGdjNtvSQXQ",
+    "video_id": "OGdjNtvSQXQ",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options > General.",
+      "Acesse a aba Credit Card/Stripe e analise a regra de 'Release and charge holds'.",
+      "Configure a quantidade ideal de dias antes do serviço para fazer a captura temporária.",
+      "Salve para gerenciar os holds automáticos sem interferência manual."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today we're tackling a frustrating\n[00:22] issue that many of you might have\n[00:23] encountered while using booking koala if\n[00:26] you've been receiving upset calls from\n[00:28] customers about unexpected holds on\n[00:29] their credit cards stick around we'll go\n[00:32] through a step-by-step tutorial on how\n[00:34] to properly set up your payment settings\n[00:36] to avoid these issues in the future\n[00:38] let's get started first head over to the\n[00:42] settings after accessing settings select\n[00:45] General hover over store\n[00:48] options then click on the general\n[00:50] tab scroll down until you see the\n[00:52] payment\n[00:53] section now in the payment section\n[00:55] you'll see the first question do you\n[00:58] want to allow a booking charged even if\n[01:00] it's\n[01:01] unassigned here's what you need to\n[01:03] do if you want bookings to charge\n[01:06] without an assigned provider select yes\n[01:09] this means that once the booking time\n[01:10] passes it can move to the pending\n[01:12] charges section even if it's\n[01:15] unassigned if you want to prevent\n[01:17] unassigned bookings from being charged\n[01:19] essentially keeping those past bookings\n[01:21] untouched select no this will ensure\n[01:24] that those old bookings stay in the\n[01:25] unassigned folder until cancelled or\n[01:28] rescheduled after you've made\n[01:30] modifications remember to save it and\n[01:33] that's it you're now ready to manage\n[01:34] your booking koala payments better if\n[01:37] you found this video helpful give it a\n[01:39] thumbs up subscribe for more tips and\n[01:41] drop any questions you have in the\n[01:42] comments below thanks for watching and\n[01:45] see you next\n[01:46] time if you are interested in a simpl to\n[01:48] ous cleaning business app check out\n[01:50] clean CRM right now you can try it out\n[01:53] for free for 30 days"
+  },
+  {
+    "index": 22,
+    "title": "How Do I Pay Contractors Based on Actual Hours in BookingKoala",
+    "title_pt": "Pagar Contractors por Hora Efetiva de Trabalho",
+    "description_pt": "Como configurar o BookingKoala para calcular o pagamento dos prestadores terceirizados com base nos registros do registro de ponto (Clock-In).",
+    "url": "https://www.youtube.com/watch?v=ydYkdiDSv4s",
+    "video_id": "ydYkdiDSv4s",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > General > Store Options > Provider.",
+      "Sob as opções de pagamento (Payouts), mude o cálculo para baseado em 'Actual Clocked Hours'.",
+      "Defina a taxa por hora de cada provider no cadastro individual deles.",
+      "Salve para gerar folhas de pagamento baseadas na produtividade real."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's video we'll fix an\n[00:21] issue with contractor payments in\n[00:23] Booking koala let's get\n[00:25] started navigate to the settings\n[00:28] option click on en within General select\n[00:32] store\n[00:35] options click on provider\n[00:39] tab in the provider settings look for\n[00:41] GPS and time logs scroll down until you\n[00:45] find the question would you like time\n[00:47] adjustments in the time logs to be\n[00:49] updated on the booking as well choose\n[00:52] yes for the option that lets you adjust\n[00:54] time logs this means if a contractor\n[00:57] Works longer than planned the booking\n[01:00] length will be updated once it's\n[01:02] approved and that's it now your\n[01:05] contractors will be paid based on the\n[01:07] actual hours they work if this helped\n[01:10] you please give us a thumbs up and\n[01:11] subscribe for more helpful tips see you\n[01:14] next time that's all and thank you for\n[01:17] watching if you are interested in a\n[01:19] simpl to use cleaning business app check\n[01:21] out clean CRM right now you can try it\n[01:24] out for free for 30 days"
+  },
+  {
+    "index": 23,
+    "title": "How Can We Set Up Reminder Emails for Providers Before Bookings in BookingKoala",
+    "title_pt": "Lembretes automáticos por E-mail para Providers",
+    "description_pt": "Como configurar lembretes automáticos por e-mail ou SMS para sua equipe não esquecer o endereço e horário da faxina do dia seguinte.",
+    "url": "https://www.youtube.com/watch?v=L3JG38zv5og",
+    "video_id": "L3JG38zv5og",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Notifications > Provider.",
+      "Selecione a opção 'Upcoming Booking Reminder' (Lembrete de Agendamento Próximo).",
+      "Ative a mensagem e configure a antecedência ideal (ex: 24 horas antes do serviço).",
+      "Salve para reduzir a taxa de faltas na equipe de campo."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala hey everyone welcome back to our\n[00:22] Channel today we're diving into a super\n[00:25] useful feature on booking koala if\n[00:27] you're managing bookings and want to\n[00:28] make sure your providers never forget\n[00:30] important details you're in the right\n[00:32] place we'll walk you through how to set\n[00:34] up reminder notifications for your\n[00:36] providers so let's get\n[00:38] started click on the settings option in\n[00:40] the main\n[00:41] menu in the settings menu look for the\n[00:44] notifications section under\n[00:46] notifications select emails SMS or app\n[00:50] this is where you can configure the\n[00:52] types of notifications you want to\n[00:55] send now find and click on provider in\n[00:57] the notification settings\n[01:00] look for the option labeled reminders\n[01:02] and click on\n[01:03] it in the reminder section you'll see\n[01:05] various reminder\n[01:07] options to set up a reminder for\n[01:09] providers you'll need to create or\n[01:10] modify a\n[01:12] reminder set it to trigger an hour\n[01:14] before the booking\n[01:16] starts enter the message you want your\n[01:18] providers to\n[01:20] receive once you've set up and\n[01:22] customized your reminder make sure to\n[01:24] save your\n[01:25] change and that's it you've successfully\n[01:28] set up reminder notifications for for\n[01:30] your providers in Booking koala this\n[01:32] feature will help ensure that important\n[01:34] details are never\n[01:36] forgotten if you are interested in a\n[01:38] simpl to use cleaning business app check\n[01:40] out clean CRM right now you can try it\n[01:43] out for free for 30 days"
+  },
+  {
+    "index": 24,
+    "title": "How to Disable a Booking Form in BookingKoala and Keep Your Data",
+    "title_pt": "Desativar Formulário de Agendamento sem Perder Histórico",
+    "description_pt": "Como pausar a captação de clientes em um formulário específico sem apagar as estatísticas e cadastros antigos associados a ele.",
+    "url": "https://www.youtube.com/watch?v=NAzqVEQkwwY",
+    "video_id": "NAzqVEQkwwY",
+    "language": "en",
+    "steps": [
+      "Vá em Settings > Industries e encontre a lista de formulários ativos.",
+      "Clique em Options ao lado do formulário e selecione Deactivate (Desativar) em vez de Delete.",
+      "O formulário ficará oculto no site, mas preservará todos os relatórios de conversões.",
+      "Para retomar, basta clicar em Options > Activate a qualquer momento."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala today I'll be showing you how to\n[00:21] disable a booking form while keeping all\n[00:23] your valuable information intact let's\n[00:25] Dive Right\n[00:27] In first let's discuss why disabling a\n[00:29] book Bing form can be more beneficial\n[00:31] than deleting it by disabling you keep\n[00:34] all your data safe which means if you\n[00:36] ever need to reactivate the form it's\n[00:38] just a click away now let's go through\n[00:40] the steps together to disable your\n[00:42] booking form start by clicking on\n[00:44] settings in your\n[00:46] dashboard next head over to\n[00:48] Industries select that delete\n[00:53] industry you'll see the added Industries\n[00:55] tab at the top click on\n[00:57] that find the industry you want to\n[00:59] disable\n[01:01] under the customer status column you'll\n[01:03] see an enabled button switch it to\n[01:06] disabled and that's it your industry is\n[01:08] now disabled for customers while all\n[01:10] your data remains intact if you like\n[01:13] this video please give it a thumbs up\n[01:14] and subscribe for more tips if you have\n[01:16] any questions or tips to share feel free\n[01:19] to leave a comment below thanks for\n[01:21] watching and see you in the next\n[01:23] video if you are interested in a simpl\n[01:26] to use cleaning business app check out\n[01:27] clean CRM right now you can you can try\n[01:30] it out for free for 30 days"
+  },
+  {
+    "index": 25,
+    "title": "How to Clear Logs and Reset Clock-In In BookingKoala",
+    "title_pt": "Limpar Histórico de Ponto e Resetar Registro",
+    "description_pt": "Como corrigir marcações incorretas de ponto (Clock-In) de prestadores que esqueceram de fechar o expediente ou registraram horários errados.",
+    "url": "https://www.youtube.com/watch?v=ccOw8fskCjs",
+    "video_id": "ccOw8fskCjs",
+    "language": "en",
+    "steps": [
+      "Vá em Providers > Manage Clock-Ins no menu administrativo superior.",
+      "Filtre pelo nome do provider e pela data correspondente da faxina.",
+      "Clique em Edit ou Clear Logs para deletar ou reajustar a marcação.",
+      "Salve a alteração para atualizar a folha de pagamento do profissional."
+    ],
+    "transcript": "[00:00] welcome to another booking koala\n[00:02] tutorial if you don't have booking koala\n[00:04] yet be sure to get it from the link\n[00:06] below and follow along step bystep if\n[00:09] you're new here we have lots of\n[00:10] tutorials about booking koala on our\n[00:12] Channel make sure to subscribe and hit\n[00:14] the notification Bell so you can easily\n[00:16] find us whenever you need help with\n[00:18] booking\n[00:19] koala in today's video we'll show you\n[00:21] how to fix booking time logs in Booking\n[00:23] koala when a provider can't clock in\n[00:26] let's get started navigate to the\n[00:28] booking section on your dashboard\n[00:31] hover over booking time logs this will\n[00:33] show you the time logs for all your\n[00:36] bookings scroll to the right end of the\n[00:39] log you will see the delete button just\n[00:42] below the provider status\n[00:44] column click on the delete button this\n[00:46] action will remove the incorrect log\n[00:49] entry make sure the option is enabled\n[00:51] for providers to reclock in and there\n[00:53] you have it a quick and easy fix for\n[00:55] booking time logs and booking koala if\n[00:58] you found this tutorial helpful don't\n[01:00] forget to like subscribe and hit that\n[01:02] notification Bell for more tips and\n[01:04] tricks got any questions drop them in\n[01:06] the comments below thanks for watching\n[01:08] and we'll see you in the next\n[01:10] video if you are interested in a simpl\n[01:12] to use cleaning business app check out\n[01:14] clean CRM right now you can try it out\n[01:17] for free for 30 days"
+  },
+  {
+    "index": 26,
+    "title": "How Do I Set a 72 Hour Notice for Weekend Reschedules in BookingKoala",
+    "title_pt": "Aviso de 72 Horas para Reagendamentos de Fim de Semana",
+    "description_pt": "Como estipular regras estritas para cancelamento ou reagendamento aos finais de semana, aplicando multas se for alterado com menos de 72 horas de antecedência.",
+    "url": "https://www.youtube.com/watch?v=5uzMnqZbiCo&pp=0gcJCT8LAYcqIYzv",
+    "video_id": "5uzMnqZbiCo",
+    "language": "unknown",
+    "steps": [
+      "Vá em Settings > General > Store Options.",
+      "Na aba Booking, localize as políticas de cancelamento e reschedules (Reschedule Policy).",
+      "Adicione regras condicionais para os dias de sábado e domingo com limite de 72 horas.",
+      "Salve as diretrizes para o sistema cobrar a taxa de cancelamento caso o cliente infrinja o prazo."
+    ],
+    "transcript": "[Aviso: A transcrição em texto cru para este vídeo está temporariamente indisponível devido ao limite de taxa de requisições do YouTube. No entanto, você pode seguir o passo a passo resumido em português acima e assistir ao vídeo embutido correspondente.]"
+  },
+  {
+    "index": 27,
+    "title": "How to Schedule a Same Day Booking on the BookingKoala App",
+    "title_pt": "Agendar Serviço para o Mesmo Dia (Same Day)",
+    "description_pt": "Como configurar a plataforma para permitir que clientes agendem e recebam atendimento no mesmo dia, reduzindo o tempo de preparação (lead time).",
+    "url": "https://www.youtube.com/watch?v=j8WMNmBb9Y4",
+    "video_id": "j8WMNmBb9Y4",
+    "language": "unknown",
+    "steps": [
+      "Vá em Settings > General > Store Options > General.",
+      "Sob as regras de tempo de preparação (Time Prep), reduza o valor limite para 0 horas.",
+      "Certifique-se de ter equipes ativas na escala de 'Same Day Booking' para receber as ordens de serviço.",
+      "Clique em Save para permitir o agendamento expresso no site."
+    ],
+    "transcript": "[Aviso: A transcrição em texto cru para este vídeo está temporariamente indisponível devido ao limite de taxa de requisições do YouTube. No entanto, você pode seguir o passo a passo resumido em português acima e assistir ao vídeo embutido correspondente.]"
+  },
+  {
+    "index": 28,
+    "title": "How Can I Change Tip Settings for Providers in BookingKoala",
+    "title_pt": "Mudar Configurações de Gorjetas (Tips) para Providers",
+    "description_pt": "Como gerenciar o recurso de gorjetas, definindo se as porcentagens sugeridas aparecem no fechamento e se os providers recebem 100% do valor.",
+    "url": "https://www.youtube.com/watch?v=h_msF5ISMe0",
+    "video_id": "h_msF5ISMe0",
+    "language": "unknown",
+    "steps": [
+      "Vá em Settings > General > Store Options.",
+      "Clique na aba Provider e vá na área de Gorjetas (Tip Settings).",
+      "Ative o recurso e configure os botões de porcentagens rápidas sugeridas (ex: 10%, 15%, 20%).",
+      "Salve. As gorjetas enviadas pelos clientes serão atribuídas à carteira do provider."
+    ],
+    "transcript": "[Aviso: A transcrição em texto cru para este vídeo está temporariamente indisponível devido ao limite de taxa de requisições do YouTube. No entanto, você pode seguir o passo a passo resumido em português acima e assistir ao vídeo embutido correspondente.]"
+  },
+  {
+    "index": 29,
+    "title": "How Can You Hide Booking Duration from Customers in BookingKoala",
+    "title_pt": "Ocultar Duração dos Serviços para Clientes",
+    "description_pt": "Como evitar que o cliente veja o tempo estimado de limpeza no formulário de checkout para focar exclusivamente na tarifa fixa e qualidade.",
+    "url": "https://www.youtube.com/watch?v=CebpgaBqOIk&pp=0gcJCT8LAYcqIYzv",
+    "video_id": "CebpgaBqOIk",
+    "language": "unknown",
+    "steps": [
+      "Vá em Settings > Industries e abra a indústria ativa.",
+      "Acesse Form Settings, edite o formulário e localize as opções de visualização.",
+      "Marque a opção 'Hide service duration from customer' (Ocultar duração do serviço para o cliente).",
+      "Salve. O cliente verá apenas o preço total e a data/horário selecionados."
+    ],
+    "transcript": "[Aviso: A transcrição em texto cru para este vídeo está temporariamente indisponível devido ao limite de taxa de requisições do YouTube. No entanto, você pode seguir o passo a passo resumido em português acima e assistir ao vídeo embutido correspondente.]"
+  },
+  {
+    "index": 30,
+    "title": "How to Block a Provider in BookingKoala Without Ending Their Session",
+    "title_pt": "Bloquear Provider sem Encerrar Seção Ativa",
+    "description_pt": "Como remover a escala de trabalho de um prestador de serviço de forma imediata (ex: demissão ou suspensão) impedindo novas reservas sem forçar logoff técnico.",
+    "url": "https://www.youtube.com/watch?v=5RMVGfvhcZc",
+    "video_id": "5RMVGfvhcZc",
+    "language": "unknown",
+    "steps": [
+      "Vá em Providers e encontre o perfil do profissional na listagem administrativa.",
+      "Clique sobre o nome dele, vá em Status e mude de Active para Blocked (Bloqueado).",
+      "O sistema manterá o acesso dele para consulta de históricos, mas não alocará novos serviços em sua agenda.",
+      "Salve para confirmar o bloqueio de agendamento automático."
+    ],
+    "transcript": "[Aviso: A transcrição em texto cru para este vídeo está temporariamente indisponível devido ao limite de taxa de requisições do YouTube. No entanto, você pode seguir o passo a passo resumido em português acima e assistir ao vídeo embutido correspondente.]"
+  }
+]

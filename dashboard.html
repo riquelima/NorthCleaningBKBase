@@ -173,6 +173,32 @@
                 </div>
             </section>
 
+            <!-- SECTION 4: Treinamentos -->
+            <section id="view-trainings" class="view-section">
+                <div class="trainings-banner">
+                    <div class="trainings-banner-text">
+                        <h2>Treinamentos Booking Koala</h2>
+                        <p>Central de tutoriais em vídeo oficiais do Booking Koala, contendo guias passo a passo estruturados e transcrições completas.</p>
+                    </div>
+                </div>
+
+                <!-- Barra de Busca Glassmorphism -->
+                <div class="trainings-search-bar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="input-search-trainings" placeholder="Pesquisar tutorial por título, passos ou palavras-chave...">
+                </div>
+
+                <!-- Grid de Cards Carregado Dinamicamente -->
+                <div id="trainings-container" class="trainings-grid">
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted); font-family: var(--font-outfit);">
+                        Carregando tutoriais em vídeo...
+                    </div>
+                </div>
+            </section>
+
         </div>
     </div>
 
@@ -204,6 +230,13 @@
                     <polyline points="10 9 9 9 8 9" stroke-width="2"></polyline>
                 </svg>
                 <span>Apostila</span>
+            </button>
+            <button id="nav-trainings" class="nav-item" onclick="switchTab('trainings')" aria-label="Visualizar Treinamentos">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+                </svg>
+                <span>Treinamentos</span>
             </button>
         </nav>
     </div>
