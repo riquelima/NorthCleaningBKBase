@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook Group Downloader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon"></div>
+        <div>
+          <h1>FB Group Downloader</h1>
+          <span class="version">Versão 1.0.0</span>
+        </div>
+      </div>
+      <div id="status-badge" class="badge status-ready">Pronto</div>
+    </header>
+
+    <!-- Configuração de URL e Limite -->
+    <div class="panel-section url-section">
+      <label for="group-url">URL do Grupo do Facebook</label>
+      <input type="text" id="group-url" value="https://www.facebook.com/groups/bookingkoala" placeholder="https://www.facebook.com/groups/..."/>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+        <label for="post-limit" style="margin: 0; text-transform: none; font-size: 12px; color: var(--text-secondary);">Quantidade de posts:</label>
+        <select id="post-limit" style="background-color: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-primary); padding: 6px 10px; font-family: var(--font-family); font-size: 12px; outline: none; transition: var(--transition); cursor: pointer; width: 140px;">
+          <option value="100">100 posts</option>
+          <option value="300">300 posts</option>
+          <option value="500">500 posts</option>
+          <option value="0" selected>Todos os posts</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Configurações de IA (Gemini) -->
+    <div class="panel-section settings-section">
+      <div class="settings-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" id="toggle-settings">
+        <label style="margin: 0; cursor: pointer;">Configurações de IA (Gemini)</label>
+        <span id="settings-arrow" style="font-size: 10px; color: var(--text-secondary); transition: var(--transition); transform: rotate(0deg);">▶</span>
+      </div>
+      <div id="settings-content" class="hidden" style="flex-direction: column; gap: 12px; margin-top: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="gemini-api-key" style="font-size: 11px; text-transform: none; letter-spacing: normal;">Chave API do Gemini</label>
+          <input type="password" id="gemini-api-key" placeholder="Cole sua API Key do Gemini aqui..." style="background-color: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-primary); padding: 8px 10px; font-family: var(--font-family); font-size: 12px; outline: none; transition: var(--transition);"/>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="checkbox" id="use-ai-extraction" style="cursor: pointer; width: 14px; height: 14px; accent-color: var(--primary);"/>
+          <label for="use-ai-extraction" style="font-size: 12px; cursor: pointer; text-transform: none; letter-spacing: normal; color: var(--text-secondary);">Ativar extração com IA (Fallback)</label>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-top: 4px;">
+          <input type="checkbox" id="use-media-download" style="cursor: pointer; width: 14px; height: 14px; accent-color: var(--primary);"/>
+          <label for="use-media-download" style="font-size: 12px; cursor: pointer; text-transform: none; letter-spacing: normal; color: var(--text-secondary);">Baixar mídias (Imagens, Vídeos, Anexos)</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configurações do Apify (Nuvem) -->
+    <div class="panel-section settings-section">
+      <div class="settings-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" id="toggle-apify-settings">
+        <label style="margin: 0; cursor: pointer;">Configurações do Apify (Nuvem)</label>
+        <span id="apify-settings-arrow" style="font-size: 10px; color: var(--text-secondary); transition: var(--transition); transform: rotate(0deg);">▶</span>
+      </div>
+      <div id="apify-settings-content" class="hidden" style="flex-direction: column; gap: 12px; margin-top: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="apify-api-key" style="font-size: 11px; text-transform: none; letter-spacing: normal;">Chave API do Apify</label>
+          <input type="password" id="apify-api-key" placeholder="Cole sua API Key do Apify aqui..." style="background-color: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-primary); padding: 8px 10px; font-family: var(--font-family); font-size: 12px; outline: none; transition: var(--transition);"/>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="checkbox" id="use-apify-extraction" style="cursor: pointer; width: 14px; height: 14px; accent-color: var(--primary);"/>
+          <label for="use-apify-extraction" style="font-size: 12px; cursor: pointer; text-transform: none; letter-spacing: normal; color: var(--text-secondary);">Ativar extração via Apify (Nuvem)</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="panel-section controls-section">
+      <!-- Botão Inicial -->
+      <button id="btn-start" class="btn btn-primary btn-block">Iniciar Download</button>
+      
+      <!-- Controles durante execução (Pausar, Continuar, Cancelar) -->
+      <div id="active-controls" class="controls-row hidden">
+        <button id="btn-pause" class="btn btn-warning">Pausar</button>
+        <button id="btn-resume" class="btn btn-success hidden">Continuar</button>
+        <button id="btn-cancel" class="btn btn-danger">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Progresso Visual -->
+    <div class="panel-section progress-section hidden" id="progress-panel">
+      <div class="progress-info">
+        <span id="progress-percentage">0% concluído</span>
+        <span id="time-remaining">Tempo restante: Calculando...</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <!-- Grid de Estatísticas -->
+    <div class="panel-section stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+      <div class="stat-card" style="grid-column: span 2;">
+        <span class="stat-label">Posts Encontrados / Processados</span>
+        <span class="stat-value"><span id="stat-processed">0</span> / <span id="stat-found">0</span></span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comentários GQL</span>
+        <span class="stat-value" id="stat-comments-gql">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comentários JSON</span>
+        <span class="stat-value" id="stat-comments-json">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comentários DOM</span>
+        <span class="stat-value" id="stat-comments-dom">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comentários Vision</span>
+        <span class="stat-value" id="stat-comments-vision">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comentários OCR</span>
+        <span class="stat-value" id="stat-comments-ocr">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comentários Totais</span>
+        <span class="stat-value" id="stat-comments">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Fotos Baixadas</span>
+        <span class="stat-value" id="stat-photos">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Vídeos Baixados</span>
+        <span class="stat-value" id="stat-videos">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Workers Ativos</span>
+        <span class="stat-value" id="stat-workers-active">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Velocidade (Posts/Min)</span>
+        <span class="stat-value" id="stat-speed">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Velocidade (Comments/Min)</span>
+        <span class="stat-value" id="stat-comments-speed">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Taxa de Recuperação</span>
+        <span class="stat-value" id="stat-recovery-rate">100%</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Dataset Size (Texto)</span>
+        <span class="stat-value" id="stat-dataset-size">0 KB</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Est. Embedding Chunks</span>
+        <span class="stat-value" id="stat-embedding-chunks">0</span>
+      </div>
+    </div>
+
+    <!-- Console de Logs -->
+    <div class="panel-section console-section">
+      <div class="console-header">
+        <h2>Console de Execução</h2>
+        <button id="btn-clear-logs" class="btn-text">Limpar</button>
+      </div>
+      <div class="console-box" id="log-box">
+        <div class="log-line log-info">Aguardando início do processo...</div>
+      </div>
+    </div>
+
+    <!-- Ação Final de Exportação -->
+    <div class="panel-section export-section">
+      <button id="btn-export" class="btn btn-secondary btn-block">Exportar ZIP</button>
+    </div>
+  </div>
+
+  <!-- Scripts locais -->
+  <script src="jszip.min.js"></script>
+  <script src="db.js"></script>
+  <script src="utils.js"></script>
+  <script src="zipExporter.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

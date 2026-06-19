@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Cleaning - Koala Hub</title>
+    <meta name="description" content="Central interativa contendo a base de conhecimento do grupo Booking Koala com grafo interativo, assistente IA com RAG e apostila formatada em PDF.">
+    
+    <!-- CSS Estilos Premium -->
+    <link rel="stylesheet" href="index.css?v=20260619_5">
+    
+    <!-- Biblioteca Vis.js para Grafo Interativo -->
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+
+    <!-- Fundo de Gradiente Líquido Flutuante -->
+    <div class="liquid-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Header Principal (Visual de Janela macOS) -->
+    <header>
+        <div class="mac-window-controls">
+            <span class="mac-dot close"></span>
+            <span class="mac-dot minimize"></span>
+            <span class="mac-dot expand"></span>
+        </div>
+        <div class="logo-container">
+            <div class="logo-icon">BK</div>
+            <h1 class="logo-text">North Cleaning - Koala Hub</h1>
+        </div>
+        <div class="header-actions">
+            <button id="btn-open-settings" class="btn-config" title="Configurar API Key para IA">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Configurar IA</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Viewport da SPA -->
+    <div id="app-viewport">
+        <!-- Slider Horizontal para Transições SPA (Mandato SPA_HORIZONTAL_MANDATE) -->
+        <div id="view-slider">
+            
+            <!-- SECTION 1: Grafo Interativo (Obsidian Style) -->
+            <section id="view-graph" class="view-section">
+                <!-- Controles do Grafo -->
+                <div class="graph-controls">
+                    <h3>Grafo de Conhecimento</h3>
+                    <p>Navegue pelas discussões conectadas do Booking Koala. Clique nos nós para abrir as conversas.</p>
+                    <div class="graph-actions-row">
+                        <button id="btn-toggle-physics" class="btn-icon" title="Pausar/Retomar física de gravitação do grafo">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                            Congelar Grafo
+                        </button>
+                        <button id="btn-reset-graph" class="btn-icon" title="Resetar zoom e centralizar grafo">
+                            Resetar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Legenda do Grafo (Obsidian Style) -->
+                <div class="graph-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot kb-root"></div>
+                        <span>Base de Conhecimento (Nó Central)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot theme"></div>
+                        <span>Categoria (Colorida por Tema)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot post"></div>
+                        <span>Discussão / Postagem (Pontinho Cinza)</span>
+                    </div>
+                </div>
+
+                <!-- Container do Grafo Vis.js -->
+                <div id="graph-container"></div>
+            </section>
+
+            <!-- SECTION 2: Chat Inteligente (RAG local ou API) -->
+            <section id="view-chat" class="view-section">
+                <div class="chat-banner">
+                    <div class="chat-banner-text">
+                        <h2>Pergunte à Base de Conhecimento</h2>
+                        <p>Interaja com o histórico de discussões usando nosso motor IA. Faça perguntas sobre configuração, marketing, Stripe ou contratação.</p>
+                    </div>
+                </div>
+
+                <!-- Painel de Mensagens -->
+                <div id="chat-messages" class="chat-messages-container">
+                    <div class="message assistant">
+                        Olá! Eu sou o assistente virtual da base de conhecimento Booking Koala. Como posso ajudar você hoje?
+                        <br><br>
+                        Você pode perguntar coisas como:
+                        <ul>
+                            <li>Como configurar o Stripe ou cobranças?</li>
+                            <li>Como migrar cartões de crédito do Launch27?</li>
+                            <li>Dicas para conseguir mais avaliações (reviews)?</li>
+                            <li>Como operar faxinas de Airbnb / STR?</li>
+                        </ul>
+                        <div class="message-meta">Sistema</div>
+                    </div>
+                </div>
+
+                <!-- Chips de Sugestões Rápida -->
+                <div class="chat-suggestions">
+                    <button class="suggestion-chip" data-query="Como migrar do Launch27 para o Booking Koala?">Migração Launch27</button>
+                    <button class="suggestion-chip" data-query="Qual é a melhor forma de gerar avaliações (reviews)?">Geração de Reviews</button>
+                    <button class="suggestion-chip" data-query="Como funciona a cobrança com Stripe no BK?">Stripe e Cobranças</button>
+                    <button class="suggestion-chip" data-query="Dicas sobre contratação de faxineiros (cleaners).">Contratação de Faxineiros</button>
+                </div>
+
+                <!-- Barra de Digitação -->
+                <div class="chat-input-bar">
+                    <input type="text" id="chat-input-field" class="chat-input" placeholder="Escreva sua dúvida sobre o Booking Koala aqui..." aria-label="Pergunta para o chat">
+                    <button id="btn-send-message" class="btn-send">
+                        <span>Enviar</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Apostila PDF -->
+            <section id="view-pdf" class="view-section">
+                <div class="pdf-banner">
+                    <div class="pdf-banner-text">
+                        <h2>Apostila de Conhecimento Koala</h2>
+                        <p>Uma compilação completa e estruturada de todas as discussões do grupo, dividida em capítulos temáticos. Ideal para leitura offline ou impressão em formato de livro digital.</p>
+                    </div>
+                    <button id="btn-print-pdf" class="btn-print" title="Salvar apostila em formato PDF">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        Salvar em PDF
+                    </button>
+                </div>
+
+                <!-- Corpo da Apostila (Gerado Dinamicamente) -->
+                <div id="apostila-content" class="apostila-book">
+                    <!-- Capa da Apostila -->
+                    <div class="apostila-cover">
+                        <div class="cover-badge">Guia Definitivo</div>
+                        <h2 class="cover-title">Base de Conhecimento<br>Booking Koala</h2>
+                        <p class="cover-subtitle">Compilação e curadoria das melhores discussões, estratégias e soluções compartilhadas pela comunidade de donos de empresas de limpeza.</p>
+                        <div class="cover-meta">
+                            <p>Organizado por categorias temáticas</p>
+                            <p>Documento de estudo e referência rápida</p>
+                        </div>
+                    </div>
+
+                    <!-- Capítulos serão injetados via JS -->
+                    <div id="apostila-chapters-container">
+                        <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                            Carregando capítulos da apostila...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Bottom NavBar Persistente (BottomNavBar Persistence) -->
+    <div class="bottom-navbar-container">
+        <nav class="bottom-navbar">
+            <button id="nav-graph" class="nav-item active" onclick="switchTab('graph')" aria-label="Ver Grafo de Conhecimento">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18 3a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3zM6 15a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3zm12 0a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3zm-6-6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+                    <line x1="15.4" y1="8.6" x2="12.6" y2="11.4" stroke-width="2"></line>
+                    <line x1="8.6" y1="14.6" x2="6.6" y2="16.6" stroke-width="2"></line>
+                    <line x1="12.6" y1="14.6" x2="15.4" y2="17.4" stroke-width="2"></line>
+                    <line x1="8.6" y1="9.4" x2="6.4" y2="7.2" stroke-width="2" opacity="0.3"></line>
+                </svg>
+                <span>Grafo</span>
+            </button>
+            <button id="nav-chat" class="nav-item" onclick="switchTab('chat')" aria-label="Abrir Chat de IA">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Chat IA</span>
+            </button>
+            <button id="nav-pdf" class="nav-item" onclick="switchTab('pdf')" aria-label="Visualizar Apostila PDF">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13" stroke-width="2"></line>
+                    <line x1="16" y1="17" x2="8" y2="17" stroke-width="2"></line>
+                    <polyline points="10 9 9 9 8 9" stroke-width="2"></polyline>
+                </svg>
+                <span>Apostila</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Drawer Lateral para Detalhes de Discussão (Obsidian Style) -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+    <div id="drawer-details" class="drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <div class="drawer-title-group">
+                <h3 class="drawer-title">Detalhes da Discussão</h3>
+                <span id="drawer-post-id" class="drawer-subtitle">Post ID: 000000</span>
+            </div>
+            <button id="btn-close-drawer" class="btn-close-drawer" aria-label="Fechar painel">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <!-- Conteúdo Principal do Post -->
+            <div class="post-card-detail">
+                <div class="post-detail-meta">
+                    <span id="drawer-post-author" class="post-detail-author">Nome do Autor</span>
+                    <span id="drawer-post-theme" class="post-detail-theme">Categoria</span>
+                </div>
+                <h3 id="drawer-post-title" style="font-family: var(--font-outfit); font-weight: 700; font-size: 16px; margin-top: 4px; margin-bottom: 12px; color: var(--text-main); line-height: 1.45;">Título da Discussão</h3>
+                <div id="drawer-post-content" class="post-detail-text">
+                    Carregando conteúdo da postagem principal...
+                </div>
+                <a id="drawer-post-link" href="#" target="_blank" class="post-detail-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Ver publicação no Facebook
+                </a>
+            </div>
+
+            <!-- Lista de Comentários / Respostas -->
+            <div class="comments-section">
+                <h4>Comentários e Respostas (<span id="drawer-comments-count">0</span>)</h4>
+                <div id="drawer-comments-list" class="comments-list">
+                    <!-- Comentários injetados via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Configuração de API Key -->
+    <div id="modal-settings-overlay" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Configuração do Provedor de IA</h3>
+                <button id="btn-close-settings" class="btn-close-drawer" aria-label="Fechar configurações">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+                    Por padrão, o North Cleaning - Koala Hub utiliza um algoritmo local de busca semântica para responder às suas perguntas.
+                    Para obter respostas geradas por IA real (RAG), você pode configurar sua própria chave de API abaixo.
+                </p>
+                
+                <div class="form-group">
+                    <label for="select-ai-provider">Provedor de IA</label>
+                    <select id="select-ai-provider" class="input-text" style="background-color: var(--bg-tertiary);">
+                        <option value="none">Busca Semântica Local (Sem chave)</option>
+                        <option value="gemini">Google Gemini (Modelo recomendado)</option>
+                        <option value="openai">OpenAI ChatGPT</option>
+                    </select>
+                </div>
+
+                <div id="api-key-form-group" class="form-group" style="display: none;">
+                    <label for="input-api-key">Chave de API (API Key)</label>
+                    <input type="password" id="input-api-key" class="input-text" placeholder="Cole sua API Key aqui...">
+                    <span class="form-help">Sua chave é armazenada de forma segura apenas localmente no seu navegador (localStorage) e as chamadas são feitas diretamente para os servidores da API.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-cancel-settings" class="btn-secondary">Cancelar</button>
+                <button id="btn-save-settings" class="btn-primary">Salvar Configurações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script SPA e Lógica da Aplicação -->
+    <script src="dashboard.js?v=20260619_5"></script>
+</body>
+</html>

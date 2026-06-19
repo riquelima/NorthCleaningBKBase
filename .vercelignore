@@ -1,0 +1,20 @@
+# Ignorar arquivos de dados brutos pesados
+facebook.xlsx
+*.zip
+*.tar.gz
+
+# Ignorar scripts Python locais de processamento de dados
+*.py
+__pycache__/
+
+# Ignorar arquivos de amostras e notas
+posts_sample.json
+sample_structure.txt
+*.log
+
+# Ignorar pastas de desenvolvimento e metadados locais
+.git/
+.github/
+.vscode/
+.agent/
+.system_generated/

@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Facebook Group Downloader",
+  "version": "1.0.0",
+  "description": "Extrai e exporta posts, comentários, mídias e anexos de grupos do Facebook.",
+  "permissions": [
+    "storage",
+    "downloads",
+    "scripting",
+    "activeTab",
+    "alarms",
+    "tabs",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://*.facebook.com/*",
+    "https://facebook.com/*",
+    "https://*.fbcdn.net/*",
+    "https://api.apify.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.facebook.com/groups/*"],
+      "js": ["downloader.js", "content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://*.facebook.com/groups/*"],
+      "js": ["interceptor.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

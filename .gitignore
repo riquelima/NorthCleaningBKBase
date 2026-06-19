@@ -1,0 +1,14 @@
+# Metadados e logs do agente AI local
+.agent/
+.system_generated/
+.gemini/
+*.log
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configurações do VS Code
+.vscode/

@@ -1,0 +1,92 @@
+[
+  {
+    "post_line": 1,
+    "post_id": null,
+    "author": "Scott Saladik",
+    "group_link": "https://www.facebook.com/groups/bookingkoala?__cft__[0]=AZbtKCXZzw--8Z9Am6noKwq3THfUckxDSnuDeUcLcycuGl9uEpVGIKZNkdshlMrBRWT4kjadRSOLQ6Sk16nqqTQViAstDw3rh1jvqlHRnYKh3PpVAD8hBHDI3sWrelBRNLxPBDjaPUktFNkgFNIQ6W8p6NSOJ2x4ehqjFtDgT8yr2KQ1g7eR-ptB__Wj6dH2MSGXCqcUZg0eYTfjCK6b2xTd",
+    "content": "How does billing work in BK do you bill customers through it or through thumbtack?",
+    "comments": [
+      {
+        "comment_id": "2173790866508820",
+        "author": "Gregory John Plakias",
+        "text": "Stripe and charge credit cards"
+      },
+      {
+        "comment_id": "2174052019816038",
+        "author": "Chris Schwab",
+        "text": "Best way is to book them from TT into BK, then you \"own\" that customer.…"
+      }
+    ]
+  },
+  {
+    "post_line": 4,
+    "post_id": null,
+    "author": "TaupeLemur7215",
+    "group_link": "https://www.facebook.com/groups/bookingkoala?__cft__[0]=AZabMYwkpplkl_DL2Xc2qYeZviUkN6MdQMJCLadUKyhgrYz_hMkqDsql7y9kgyHvlBDWTwyz5q-sGK4l2U6uOOkpgtvwlTZN0RU9PNueJudTmsMZXJBunlhEQQyKF8_ZHg87g5CQU29UTc_GlQugDWRGLFco4ALExKKY52D_aH_8W235yYtg6tkYN5WKTl_fWa-B7H228PZ67_oHN5-TLTSCwl5FEBld74uwwcn3hnXNjA",
+    "content": "I've been actively posting on facebook for my cleaning company in canada. I post ads from my business page. Whenever someone in the groups asks about cleaners, I post there as well promoting my cleaning company from my business page and from my private page. I received no page views at all. Which is strange because I have advertised for another cleaning company in the same way betore and they were receiving regular views on the busine…",
+    "comments": [
+      {
+        "comment_id": "2173113953243178",
+        "author": "Sean Parry",
+        "text": "Yep, organic visibility from business pages is pretty much zero. You might get a bit more success from your personal page. But…"
+      },
+      {
+        "comment_id": "2173548753199698",
+        "author": "AUSSIE GOT IT",
+        "text": "Have you considered getting Meta verified?"
+      }
+    ]
+  },
+  {
+    "post_line": 7,
+    "post_id": null,
+    "author": "TJ Sanderlin",
+    "group_link": "https://www.facebook.com/groups/bookingkoala?__cft__[0]=AZb9eDVNR15EcW6gGpYEE0PdlGklPTJKNNbSb_pgJKCU0emzC1NsNqjMcP5ymRv9cj5Aa7PaQCiV_mSlYbV3ypouXqT33KiDUhAm7PyVZOJg7U99IOk5umuwqkdAL9uAAOKrfTi_HJdrWc7nYuBjbxRbul76EzSctdHAefaR6mDr0tQFmLfXa-z9nOYCmfCk4R0",
+    "content": "Hi everyone! I’m preparing to make the switch from Launch27 to BK (settings are customized, default theme built). However, I need help executing some of the technical backend steps that I'm not comfortable with.Specifically: 1) Credit Card Migration: transfer of customer credit card info from Launch27Pay to Stripe; 2) Domain/DNS/Website Setup: plan to move to a brand new domain, meaning Cloudflare management, records…",
+    "comments": [
+      {
+        "comment_id": "2173357103218863",
+        "author": "Roger F. Schulze",
+        "text": "feel free to reach out! I pretty much migrated most of the users from l27 to bk"
+      }
+    ]
+  },
+  {
+    "post_line": 13,
+    "post_id": null,
+    "author": "Megan McMahon",
+    "group_link": "https://www.facebook.com/groups/bookingkoala?__cft__[0]=AZbYbSns_yaEXPYrG5RYq0XI3qB-8pOoTfwCWb-UaMOIJTHPxTp_wf0fYDwDWXl12xIE9BOV2dyFOy8W6-ITb9MNP34ZcBPhHSSEUTzmmjCKRWtfM1S9ZFhcURqkYo_O-XGBHskaa8xY3Vy_RZKyWf8n46vtXQYLEKZHWzqb_00ipukQD3AeWsFozV63xrEcOxhBifM227W2ALEF9PLkjPs5",
+    "content": "Only thing I’m worried about with the booking koala model, is I can’t see the home before it’s booked in.",
+    "comments": [
+      {
+        "comment_id": "2168419043712669",
+        "author": "Ernest Black",
+        "text": "I might be lost but….I think what you’re saying is in your current system you"
+      },
+      {
+        "comment_id": "2168347963719777",
+        "author": "Gregory John Plakias",
+        "text": "1. Go to the property …"
+      }
+    ]
+  },
+  {
+    "post_line": 20,
+    "post_id": null,
+    "author": "Yvey Sopiqoti",
+    "group_link": "https://www.facebook.com/groups/bookingkoala?__cft__[0]=AZZkwqTPa92cDlvRhEhpomoL2Sck4VO5BY2Y4wLDWj35jqLsZwtQPMTJFNeU3CMGIy2Xa0mMavovWw3k9O-D9NVqRK7Eu2XXqkhZXewna2KtTduihYhzoUtPfrhLXDCKO31fROc2bIVbj-vs7y-ZbHsXNJ0sjjW72N03Ep-2ZNtu81yaecqSYyRISTVoYQEm7Sw",
+    "content": "Looking for some general feedback from you established pros as I’m looking to launch my cleaning business within the next couple of weeks! Any other call outs are greatly appreciated!",
+    "comments": [
+      {
+        "comment_id": "2171874816700425",
+        "author": "Nicole Jandzio",
+        "text": "I’m in the same boat!  Anyone from CA in this group that has contractors for cleaners?  Would love to ask some questions!"
+      },
+      {
+        "comment_id": "2172750143279559",
+        "author": "Adam Johnson",
+        "text": "dm me will be glad to help"
+      }
+    ]
+  }
+]
