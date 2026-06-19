@@ -10,6 +10,8 @@ let activeTab = 'graph';
 let network = null;
 let isPhysicsEnabled = true;
 let aiConfig = { provider: 'none', apiKey: '' };
+let isApostilaGenerated = false;
+let isTrainingsRendered = false;
 
 // Lista de Stopwords comuns em português e inglês para busca semântica simples
 const STOPWORDS = new Set([
@@ -34,16 +36,39 @@ document.addEventListener("DOMContentLoaded", () => {
 // 1. Carregamento e Configuração de IA (Local Storage)
 function loadAIConfig() {
     const savedConfig = localStorage.getItem("koala_hub_ai_config");
+    let needsUpdate = false;
+    
     if (savedConfig) {
         try {
             aiConfig = JSON.parse(savedConfig);
-            // Atualizar elementos da UI
-            document.getElementById("select-ai-provider").value = aiConfig.provider;
-            document.getElementById("input-api-key").value = aiConfig.apiKey;
-            toggleAPIKeyField(aiConfig.provider);
+            // Se a chave for diferente da fornecida pelo usuário ou o provedor for diferente de 'glm', força a atualização
+            if (aiConfig.provider !== 'glm' || aiConfig.apiKey !== '7c1111237d10418cb82a36a12597d25e.TczJzDaxvIEIRaZC') {
+                needsUpdate = true;
+            }
         } catch (e) {
             console.error("Erro ao carregar configurações de IA do localStorage:", e);
+            needsUpdate = true;
         }
+    } else {
+        needsUpdate = true;
+    }
+    
+    if (needsUpdate) {
+        // Pré-configura a chave Zhipu GLM fornecida pelo usuário como padrão
+        aiConfig = {
+            provider: 'glm',
+            apiKey: '7c1111237d10418cb82a36a12597d25e.TczJzDaxvIEIRaZC'
+        };
+        localStorage.setItem("koala_hub_ai_config", JSON.stringify(aiConfig));
+    }
+    
+    // Atualizar elementos da UI
+    const providerSelect = document.getElementById("select-ai-provider");
+    const apiKeyInput = document.getElementById("input-api-key");
+    if (providerSelect && apiKeyInput) {
+        providerSelect.value = aiConfig.provider;
+        apiKeyInput.value = aiConfig.apiKey;
+        toggleAPIKeyField(aiConfig.provider);
     }
 }
 
@@ -63,6 +88,7 @@ function saveAIConfig() {
 function getProviderFriendlyName(provider) {
     if (provider === 'gemini') return 'Google Gemini (RAG Ativo)';
     if (provider === 'openai') return 'OpenAI ChatGPT (RAG Ativo)';
+    if (provider === 'glm') return 'Zhipu GLM 4.5 Flash (RAG Ativo)';
     return 'Busca Semântica Local (Sem IA)';
 }
 
@@ -72,8 +98,10 @@ function toggleAPIKeyField(provider) {
         group.style.display = "none";
     } else {
         group.style.display = "flex";
-        document.getElementById("input-api-key").placeholder = 
-            provider === 'gemini' ? "Digite sua Gemini API Key..." : "Digite sua OpenAI API Key...";
+        let placeholder = "Digite sua OpenAI API Key...";
+        if (provider === 'gemini') placeholder = "Digite sua Gemini API Key...";
+        if (provider === 'glm') placeholder = "Digite sua Zhipu GLM API Key...";
+        document.getElementById("input-api-key").placeholder = placeholder;
     }
 }
 
@@ -88,7 +116,7 @@ async function fetchKnowledgeBase() {
         
         // Inicializar componentes com os dados carregados
         initGrafo();
-        generateApostila();
+        // generateApostila() e renderização de treinamentos foram movidos para carregamento lazy na mudança de aba
         
         // Carregar Treinamentos
         await fetchTrainings();
@@ -177,6 +205,18 @@ window.switchTab = function(tabId) {
     
     const activeBtn = document.getElementById(navBtnId);
     if (activeBtn) activeBtn.classList.add("active");
+    
+    // Lazy Generation da Apostila PDF ao acessar a aba correspondente
+    if (tabId === 'pdf' && !isApostilaGenerated) {
+        generateApostila();
+        isApostilaGenerated = true;
+    }
+    
+    // Lazy Rendering dos cartões de Treinamentos ao acessar a aba correspondente
+    if (tabId === 'trainings' && !isTrainingsRendered) {
+        renderTrainings(allTrainings);
+        isTrainingsRendered = true;
+    }
     
     // 2. Mover o view-slider horizontal usando translate3d (Aceleração por hardware)
     const slider = document.getElementById("view-slider");
@@ -428,6 +468,22 @@ function initGrafo() {
     // Criar a rede Vis.js
     network = new vis.Network(container, data, options);
 
+    // Congelar a simulação física do grafo após a estabilização para economizar 100% de CPU em background
+    network.on("stabilized", () => {
+        console.log("Grafo estabilizado. Congelando física.");
+        network.setOptions({ physics: { enabled: false } });
+        isPhysicsEnabled = false;
+        const btn = document.getElementById("btn-toggle-physics");
+        if (btn) {
+            btn.innerHTML = `
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Soltar Grafo
+            `;
+        }
+    });
+
     // Evento de Clique no Nó
     network.on("click", (params) => {
         if (params.nodes.length > 0) {
@@ -568,17 +624,17 @@ async function handleUserSendMessage() {
 
     // 3. Fazer RAG / Busca
     try {
-        // Encontrar as discussões mais semelhantes localmente
-        const contextPosts = searchLocalKnowledge(query, 4);
+        // Encontrar as discussões e treinamentos mais semelhantes localmente
+        const contextData = searchLocalKnowledge(query);
 
         let replyText = "";
 
         if (aiConfig.provider === 'none') {
             // Resposta Sintetizada Local (Sem API Key)
-            replyText = formatLocalSynthesizedResponse(query, contextPosts);
+            replyText = formatLocalSynthesizedResponse(query, contextData);
         } else {
             // Chamada de API Oficial (RAG de Verdade com LLM)
-            replyText = await callAIChatAPI(query, contextPosts);
+            replyText = await callAIChatAPI(query, contextData);
         }
 
         // Remover indicador de digitação e adicionar resposta da IA
@@ -595,93 +651,134 @@ async function handleUserSendMessage() {
     msgContainer.scrollTop = msgContainer.scrollHeight;
 }
 
-// Algoritmo de busca simplificada baseada em palavras-chave
-function searchLocalKnowledge(query, limit = 3) {
+// Algoritmo de busca simplificada baseada em palavras-chave unificada (posts + treinamentos)
+function searchLocalKnowledge(query) {
     // Normalizar query: minúscula, remover pontuação
     const cleanQuery = query.toLowerCase().replace(/[^\w\s]/g, ' ');
     const queryWords = cleanQuery.split(/\s+/).filter(w => w.length > 2 && !STOPWORDS.has(w));
 
     if (queryWords.length === 0) {
-        // Fallback: se não sobrou nenhuma palavra-chave, retorna posts aleatórios ou primeiros
-        return knowledgeBase.posts.slice(0, limit);
+        // Fallback: se não sobrou nenhuma palavra-chave, retorna os primeiros itens de cada
+        return {
+            posts: knowledgeBase.posts.slice(0, 15),
+            trainings: (allTrainings || []).slice(0, 8)
+        };
     }
 
+    // 1. Pontuação de Posts do Facebook
     const scoredPosts = knowledgeBase.posts.map(post => {
         let score = 0;
         const postText = (post.content + " " + post.author).toLowerCase();
         
-        // Frequência de correspondência no post principal (peso alto = 3)
         queryWords.forEach(word => {
-            const regex = new RegExp(word, 'g');
-            const count = (postText.match(regex) || []).length;
-            score += count * 3;
+            // Contagem segura de ocorrências usando split em vez de regex
+            const count = postText.split(word).length - 1;
+            score += count * 3; // Peso 3 para texto do post principal
         });
 
-        // Frequência de correspondência nos comentários (peso menor = 1)
         post.comments.forEach(c => {
             const commentText = (c.text + " " + c.author).toLowerCase();
             queryWords.forEach(word => {
-                const regex = new RegExp(word, 'g');
-                const count = (commentText.match(regex) || []).length;
-                score += count * 1.2;
+                const count = commentText.split(word).length - 1;
+                score += count * 1.5; // Peso 1.5 para comentários (aumentado para melhor RAG)
             });
         });
 
         return { post, score };
     });
 
-    // Ordena de forma decrescente pelo score e filtra scores > 0
-    const filtered = scoredPosts
+    const filteredPosts = scoredPosts
         .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => b.score - a.score)
+        .map(item => item.post);
 
-    // Se nenhum post deu match, retorna as primeiras discussões
-    if (filtered.length === 0) {
-        return knowledgeBase.posts.slice(0, limit);
-    }
+    // 2. Pontuação de Tutoriais de Treinamento
+    const scoredTrainings = (allTrainings || []).map(tr => {
+        let score = 0;
+        const titlePt = (tr.title_pt || "").toLowerCase();
+        const titleEn = (tr.title || "").toLowerCase();
+        const desc = (tr.description_pt || "").toLowerCase();
+        const stepsText = (tr.steps || []).join(" ").toLowerCase();
+        const transcript = (tr.transcript || "").toLowerCase();
+        
+        const fullText = `${titlePt} ${titleEn} ${desc} ${stepsText} ${transcript}`;
+        
+        queryWords.forEach(word => {
+            const count = fullText.split(word).length - 1;
+            score += count * 4; // Peso 4 para guias oficiais e passo a passos
+        });
+        
+        return { training: tr, score };
+    });
 
-    return filtered.slice(0, limit).map(item => item.post);
+    const filteredTrainings = scoredTrainings
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .map(item => item.training);
+
+    // Retorna os top 15 posts e top 8 treinamentos para cobrir o máximo possível do banco de dados no RAG
+    return {
+        posts: filteredPosts.length > 0 ? filteredPosts.slice(0, 15) : knowledgeBase.posts.slice(0, 15),
+        trainings: filteredTrainings.length > 0 ? filteredTrainings.slice(0, 8) : (allTrainings || []).slice(0, 8)
+    };
 }
 
 // Formatação da Resposta Sintetizada Local (Offline)
-function formatLocalSynthesizedResponse(query, posts) {
-    if (posts.length === 0) {
-        return "Não encontrei nenhuma discussão relevante específica para sua pergunta na base de conhecimento. Tente reformular usando termos mais comuns de Booking Koala.";
+function formatLocalSynthesizedResponse(query, contextData) {
+    const { posts, trainings } = contextData;
+    let response = "";
+    
+    if (trainings.length > 0) {
+        response += `### 🎓 Tutoriais de Treinamento Encontrados:\n`;
+        trainings.forEach((tr, index) => {
+            response += `**${index + 1}. ${tr.title_pt}**\n`;
+            response += `> *"${tr.description_pt}"*\n`;
+            if (tr.steps && tr.steps.length > 0) {
+                response += `**Passos sugeridos:**\n`;
+                tr.steps.slice(0, 3).forEach(step => {
+                    response += `- ${step}\n`;
+                });
+            }
+            response += `[Ver vídeo no YouTube](${tr.url})\n\n`;
+        });
+        response += `\n---\n\n`;
     }
 
-    let response = `Com base na base de conhecimento do grupo Booking Koala, encontrei as seguintes discussões relevantes:\n\n`;
-
-    posts.forEach((post, index) => {
-        const theme = knowledgeBase.themes.find(t => t.id === post.theme_id);
-        const themeName = theme ? theme.name.split(' (')[0] : "Geral";
-        
-        response += `### ${index + 1}. [Discussão de ${post.author}] (${themeName})\n`;
-        response += `> *"${post.content}"*\n\n`;
-        
-        const validComments = post.comments.filter(c => {
-            const txt = c.text ? c.text.trim() : "";
-            return txt !== "" && !/^\.+$/.test(txt);
-        });
-
-        if (validComments.length > 0) {
-            response += `**Principais Soluções/Comentários compartilhados:**\n`;
-            // Pega até 2 comentários mais importantes
-            validComments.slice(0, 2).forEach(c => {
-                response += `- **${c.author}**: "${c.text}"\n`;
+    if (posts.length > 0) {
+        response += `### 💬 Discussões Relevantes da Comunidade:\n`;
+        posts.forEach((post, index) => {
+            const theme = knowledgeBase.themes.find(t => t.id === post.theme_id);
+            const themeName = theme ? theme.name.split(' (')[0] : "Geral";
+            
+            response += `**${index + 1}. Discussão de ${post.author}** (${themeName})\n`;
+            response += `> *"${post.content.substring(0, 180)}..."*\n`;
+            
+            const validComments = post.comments.filter(c => {
+                const txt = c.text ? c.text.trim() : "";
+                return txt !== "" && !/^\.+$/.test(txt);
             });
-        } else {
-            response += `*Nesta publicação, os membros ainda não haviam compartilhado soluções nos comentários.*\n`;
-        }
-        response += `\n---\n\n`;
-    });
 
-    response += `💡 *Dica: Configure uma API Key do Google Gemini ou OpenAI no botão "Configurar IA" no cabeçalho superior para que eu possa sintetizar uma resposta única baseada nessas discussões de forma automática.*`;
+            if (validComments.length > 0) {
+                response += `**Principais Respostas:**\n`;
+                validComments.slice(0, 1).forEach(c => {
+                    response += `- **${c.author}**: "${c.text.substring(0, 140)}..."\n`;
+                });
+            }
+            response += `\n`;
+        });
+    }
+
+    if (response === "") {
+        return "Não encontrei nenhuma discussão ou tutorial relevante específica para sua pergunta na base de conhecimento. Tente reformular usando termos mais comuns de Booking Koala.";
+    }
+
+    response += `\n---\n💡 *Dica: Ative o Zhipu GLM 4.5 Flash ou outro provedor em "Configurar IA" no cabeçalho superior para que eu possa gerar uma resposta unificada baseada nessas discussões de forma automática.*`;
 
     return response;
 }
 
-// Chamada de API RAG (Gemini ou OpenAI)
-async function callAIChatAPI(query, contextPosts) {
+// Chamada de API RAG (Gemini, OpenAI ou GLM)
+async function callAIChatAPI(query, contextData) {
     const provider = aiConfig.provider;
     const apiKey = aiConfig.apiKey;
 
@@ -689,33 +786,55 @@ async function callAIChatAPI(query, contextPosts) {
         throw new Error("API Key não configurada. Vá em 'Configurar IA' no cabeçalho superior.");
     }
 
-    // Preparar o Contexto das discussões para injetar no Prompt da IA
+    const { posts, trainings } = contextData;
+
+    // Preparar o Contexto das discussões e treinamentos para injetar no Prompt da IA
     let contextString = "";
-    contextPosts.forEach((post, i) => {
-        contextString += `DISCUSSÃO #${i + 1}:\n`;
-        contextString += `Autor: ${post.author}\n`;
-        contextString += `Conteúdo: ${post.content}\n`;
-        const validComments = post.comments.filter(c => {
-            const txt = c.text ? c.text.trim() : "";
-            return txt !== "" && !/^\.+$/.test(txt);
-        });
-        if (validComments.length > 0) {
-            contextString += `Respostas e Comentários:\n`;
-            validComments.forEach(c => {
-                contextString += `- ${c.author}: ${c.text}\n`;
+    
+    if (posts && posts.length > 0) {
+        contextString += "=== DISCUSSÕES RELEVANTES DA COMUNIDADE (FACEBOOK) ===\n";
+        posts.forEach((post, i) => {
+            contextString += `DISCUSSÃO #${i + 1}:\n`;
+            contextString += `Autor: ${post.author}\n`;
+            contextString += `Conteúdo: ${post.content}\n`;
+            const validComments = post.comments.filter(c => {
+                const txt = c.text ? c.text.trim() : "";
+                return txt !== "" && !/^\.+$/.test(txt);
             });
-        }
-        contextString += `\n`;
-    });
+            if (validComments.length > 0) {
+                contextString += `Respostas e Comentários:\n`;
+                validComments.forEach(c => {
+                    contextString += `- ${c.author}: ${c.text}\n`;
+                });
+            }
+            contextString += `\n`;
+        });
+    }
+    
+    if (trainings && trainings.length > 0) {
+        contextString += "=== TUTORIAIS OFICIAIS DE CONFIGURAÇÃO (TREINAMENTOS) ===\n";
+        trainings.forEach((tr, i) => {
+            contextString += `TUTORIAL #${i + 1}: ${tr.title_pt} (${tr.title})\n`;
+            contextString += `Descrição: ${tr.description_pt}\n`;
+            if (tr.steps && tr.steps.length > 0) {
+                contextString += `Passo a Passo:\n`;
+                tr.steps.forEach((step, idx) => {
+                    contextString += `  ${idx + 1}. ${step}\n`;
+                });
+            }
+            contextString += `Link do vídeo no YouTube: https://www.youtube.com/watch?v=${tr.video_id}\n\n`;
+        });
+    }
 
     const systemPrompt = `Você é um assistente virtual especialista no software Booking Koala (BK) e em gestão de negócios de limpeza.
-Você tem acesso a trechos de discussões reais do grupo de Facebook do Booking Koala.
-Responda à pergunta do usuário baseando-se estritamente nas discussões fornecidas no CONTEXTO. 
+Você tem acesso a trechos de discussões reais do grupo de Facebook do Booking Koala e tutoriais passo a passo em português extraídos dos vídeos de treinamento oficiais da plataforma.
+Responda à pergunta do usuário baseando-se estritamente no CONTEXTO fornecido (que inclui discussões da comunidade e tutoriais passo a passo).
 Seja prestativo, profissional e escreva em Português do Brasil.
+Sempre que usar informações dos tutoriais de treinamento, cite que há um tutorial em vídeo disponível sobre o assunto (ex: "De acordo com o Tutorial de Treinamento sobre 'Desativar Popup na Seleção de Categorias'...").
+Sempre cite o nome dos membros do grupo de Facebook que deram as dicas importantes nas discussões (ex: "Conforme Scott Saladik sugeriu...").
 Se a informação não estiver no contexto, use o contexto do site oficial do Booking Koala (bookingkoala.com) ou informe que a comunidade de usuários não detalhou esse ponto na base de dados disponível.
-Sempre cite o nome dos membros que deram as dicas importantes nas discussões (ex: "Conforme Scott Saladik sugeriu...").
 
-Aqui está o CONTEXTO contendo as discussões do grupo de Facebook:
+Aqui está o CONTEXTO contendo as discussões e tutoriais:
 \"\"\"
 ${contextString}
 \"\"\"`;
@@ -769,6 +888,34 @@ ${contextString}
                 ],
                 temperature: 0.3,
                 max_tokens: 800
+            })
+        });
+
+        if (!response.ok) {
+            const errData = await response.json();
+            throw new Error(errData.error?.message || `HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+        
+    } else if (provider === 'glm') {
+        // Chamada API da Zhipu AI GLM-4.5-Flash via gateway Z.ai
+        const url = "https://api.z.ai/api/paas/v4/chat/completions";
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "glm-4.5-flash",
+                messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: query }
+                ],
+                temperature: 0.3,
+                max_tokens: 1000
             })
         });
 
@@ -1002,7 +1149,7 @@ function generateApostila() {
 // SEÇÃO 4: TREINAMENTOS (Carregamento Dinâmico, Player e Busca Reativa)
 // ==========================================================================
 
-// Carregar Treinamentos do JSON e renderizar
+// Carregar Treinamentos do JSON sem renderizar imediatamente (Lazy Loading de DOM)
 async function fetchTrainings() {
     try {
         const response = await fetch("treinamentos.json");
@@ -1010,7 +1157,7 @@ async function fetchTrainings() {
             throw new Error(`Falha ao ler o arquivo JSON de treinamentos: ${response.status}`);
         }
         allTrainings = await response.json();
-        renderTrainings(allTrainings);
+        // Apenas configura a busca e adia a renderização de elementos pesados do DOM
         setupTrainingsSearch();
     } catch (error) {
         console.error("Erro ao carregar os treinamentos:", error);
@@ -1100,6 +1247,7 @@ function setupTrainingsSearch() {
     if (!searchInput) return;
     
     searchInput.addEventListener("input", (e) => {
+        isTrainingsRendered = true; // Marca que já renderizou, pois a pesquisa forçará o render dos itens filtrados
         const query = e.target.value.toLowerCase().trim();
         if (!query) {
             renderTrainings(allTrainings);
