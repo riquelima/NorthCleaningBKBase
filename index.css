@@ -265,6 +265,7 @@ header {
     max-width: 480px;
     z-index: 100;
     pointer-events: none; /* Garante que cliques fora passem para elementos inferiores */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .bottom-navbar {
@@ -695,6 +696,7 @@ div.vis-tooltip {
     max-width: 900px;
     margin: 0 auto;
     overflow: hidden; /* Impede a rolagem da página inteira do chat, deixando apenas as mensagens rolarem */
+    transition: padding-bottom 0.3s ease;
 }
 
 .chat-banner {
@@ -1331,6 +1333,14 @@ div.vis-tooltip {
 @media (max-width: 768px) {
     .view-section {
         padding: 16px 16px 100px 16px;
+    }
+    body.chat-focus .bottom-navbar-container {
+        transform: translate(-50%, 150%) !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    body.chat-focus #view-chat {
+        padding-bottom: 24px !important;
     }
     header {
         padding: 12px 16px;

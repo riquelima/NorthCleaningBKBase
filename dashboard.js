@@ -125,7 +125,16 @@ function setupEventListeners() {
 
     // Chat
     document.getElementById("btn-send-message").addEventListener("click", handleUserSendMessage);
-    document.getElementById("chat-input-field").addEventListener("keypress", (e) => {
+    const chatInputField = document.getElementById("chat-input-field");
+    chatInputField.addEventListener("focus", () => {
+        document.body.classList.add("chat-focus");
+    });
+    chatInputField.addEventListener("blur", () => {
+        setTimeout(() => {
+            document.body.classList.remove("chat-focus");
+        }, 150);
+    });
+    chatInputField.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
             handleUserSendMessage();
         }
@@ -204,14 +213,19 @@ function initGrafo() {
     const nodesArray = [];
     const edgesArray = [];
 
-    // Mapeamento de cores de temas para consistência
+    // Mapeamento de cores de temas para consistência (11 categorias da nova base de conhecimento)
     const themeColors = {
-        'theme-billing': '#fbbf24',    // Dourado
-        'theme-marketing': '#0ea5e9',  // Azul
-        'theme-operations': '#ec4899', // Rosa
-        'theme-hiring': '#10b981',     // Verde
-        'theme-reviews': '#f43f5e',    // Vermelho/Rosa
-        'theme-strategy': '#8b5cf6'    // Roxo (Geral)
+        'theme-migracao': '#06b6d4',      // Ciano (Migração)
+        'theme-pagamentos': '#eab308',     // Dourado (Stripe/Cobrança)
+        'theme-agendamento': '#3b82f6',    // Azul (Reservas/Calendário)
+        'theme-equipe': '#10b981',         // Verde (Cleaners/VAs/1099)
+        'theme-marketing': '#ec4899',      // Rosa (SEO/Anúncios/Reviews)
+        'theme-automacao-ia': '#8b5cf6',   // Roxo (Zapier/IA/API)
+        'theme-website': '#f97316',        // Laranja (Tema/Customização CSS)
+        'theme-config': '#0ea5e9',         // Ciano claro (Configurações BK)
+        'theme-negocio': '#ef4444',        // Vermelho (Precificação/Negócios)
+        'theme-suporte': '#64748b',        // Slate (Bugs/Suporte)
+        'theme-outros': '#a855f7'          // Lilás (Gerais/Outros)
     };
 
     // Adiciona o nó central unificado (Knowledge Base - Raiz da teia)
@@ -468,13 +482,8 @@ function openPostDrawer(postId) {
     const themeLabel = document.getElementById("drawer-post-theme");
     themeLabel.innerText = theme ? theme.name.split(' (')[0] : "Discussão";
     
-    // Cor do label do tema no drawer
-    let themeColor = '#8b5cf6';
-    if (post.theme_id === 'theme-billing') themeColor = '#fbbf24';
-    if (post.theme_id === 'theme-marketing') themeColor = '#0ea5e9';
-    if (post.theme_id === 'theme-operations') themeColor = '#ec4899';
-    if (post.theme_id === 'theme-hiring') themeColor = '#10b981';
-    if (post.theme_id === 'theme-reviews') themeColor = '#f43f5e';
+    // Cor do label do tema no drawer (obtido dinamicamente das cores do tema)
+    const themeColor = themeColors[post.theme_id] || '#8b5cf6';
     themeLabel.style.backgroundColor = `${themeColor}20`;
     themeLabel.style.color = themeColor;
 
