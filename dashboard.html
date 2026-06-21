@@ -7,7 +7,7 @@
     <meta name="description" content="Central interativa contendo a base de conhecimento do grupo Booking Koala com grafo interativo, assistente IA com RAG e apostila formatada em PDF.">
     
     <!-- CSS Estilos Premium -->
-    <link rel="stylesheet" href="index.css?v=20260620_6">
+    <link rel="stylesheet" href="index.css?v=20260620_8">
     
     <!-- Redirecionar /favicon.ico para favicon.svg -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -185,6 +185,27 @@
                         Salvar em PDF
                     </button>
                 </div>
+
+                <!-- Botão hamburger Sumário (mobile) -->
+                <button id="toc-toggle" class="toc-toggle" aria-label="Abrir sumário" aria-expanded="false" aria-controls="apostila-toc">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <span>Sumário</span>
+                </button>
+
+                <!-- Sumário lateral fixo -->
+                <nav id="apostila-toc" class="apostila-toc" role="navigation" aria-label="Sumário de capítulos da apostila">
+                    <div class="toc-header">
+                        <h3>Sumário</h3>
+                        <span class="toc-count" id="toc-count">Capítulos</span>
+                    </div>
+                    <ul id="apostila-toc-list" class="toc-list" role="menu">
+                        <!-- gerado dinamicamente via JS -->
+                    </ul>
+                </nav>
 
                 <!-- Corpo da Apostila (Gerado Dinamicamente) -->
                 <div id="apostila-content" class="apostila-book">
@@ -364,6 +385,6 @@
     </div>
 
     <!-- Script SPA e Lógica da Aplicação -->
-    <script src="dashboard.js?v=20260620_7"></script>
+    <script src="dashboard.js?v=20260620_8"></script>
 </body>
 </html>

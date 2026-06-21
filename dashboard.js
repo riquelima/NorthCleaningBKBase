@@ -1300,6 +1300,8 @@ function generateApostila() {
 
         const chapterDiv = document.createElement("div");
         chapterDiv.className = "chapter";
+        chapterDiv.id = `chapter-${index}`;
+        chapterDiv.setAttribute('data-theme-id', theme.id);
 
         // Cabeçalho do capítulo
         const chHeader = document.createElement("div");
@@ -1363,6 +1365,112 @@ function generateApostila() {
         chapterDiv.appendChild(postsContainer);
         container.appendChild(chapterDiv);
     });
+
+    // Inicializar sumário de navegação após renderizar capítulos
+    initApostilaTOC();
+}
+
+// ==========================================================================
+// SUMÁRIO DE NAVEGAÇÃO DA APOSTILA (TOC c/ smooth scroll, ativo, hamburger)
+// ==========================================================================
+
+function initApostilaTOC() {
+    const toc = document.getElementById('apostila-toc');
+    const tocList = document.getElementById('apostila-toc-list');
+    if (!toc || !tocList) return;
+
+    const chapters = document.querySelectorAll('#apostila-chapters-container .chapter');
+    if (chapters.length === 0) return;
+
+    // Construir itens do sumário
+    tocList.innerHTML = '';
+    chapters.forEach((ch, i) => {
+        const titleEl = ch.querySelector('.chapter-title');
+        const numEl = ch.querySelector('.chapter-number');
+        if (!titleEl) return;
+
+        const li = document.createElement('li');
+        li.className = 'toc-item';
+
+        const link = document.createElement('a');
+        link.href = `#${ch.id}`;
+        link.className = 'toc-link';
+        link.setAttribute('role', 'menuitem');
+        link.setAttribute('tabindex', '0');
+        link.innerHTML = `<span class="toc-num">${numEl ? numEl.textContent : `#${i+1}`}</span><span class="toc-label">${titleEl.textContent}</span>`;
+
+        // Smooth scroll no clique
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeTocMobile();
+            const target = document.getElementById(ch.id);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // Suporte a teclado: Enter
+        link.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                closeTocMobile();
+                const target = document.getElementById(ch.id);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        li.appendChild(link);
+        tocList.appendChild(li);
+    });
+
+    // IntersectionObserver — marcar item ativo conforme capítulo visível
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const id = entry.target.id;
+            const link = toc.querySelector(`a[href="#${id}"]`);
+            if (!link) return;
+            const item = link.closest('.toc-item');
+            if (entry.isIntersecting) {
+                toc.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+                if (item) item.classList.add('active');
+                link.setAttribute('aria-current', 'location');
+            } else {
+                if (item) item.classList.remove('active');
+                link.removeAttribute('aria-current');
+            }
+        });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+
+    chapters.forEach(ch => observer.observe(ch));
+
+    // Hamburger toggle
+    const toggle = document.getElementById('toc-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toc.classList.toggle('toc-open');
+            toggle.setAttribute('aria-expanded', toc.classList.contains('toc-open'));
+        });
+    }
+
+    // Fechar ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (toc.classList.contains('toc-open') && !toc.contains(e.target) && toggle && !toggle.contains(e.target)) {
+            closeTocMobile();
+        }
+    });
+
+    // Fechar com Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && toc.classList.contains('toc-open')) {
+            closeTocMobile();
+        }
+    });
+}
+
+function closeTocMobile() {
+    const toc = document.getElementById('apostila-toc');
+    const toggle = document.getElementById('toc-toggle');
+    if (toc) toc.classList.remove('toc-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
 }
 
 // ==========================================================================
