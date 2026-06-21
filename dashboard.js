@@ -39,19 +39,27 @@ const GRAPH_PHYSICS = {
     }
 };
 
-// Mapeamento de cores de temas para consistência (11 categorias)
+// Mapeamento de cores de temas para consistência (19 categorias)
 const themeColors = {
-    'theme-migracao': '#06b6d4',
-    'theme-pagamentos': '#eab308',
-    'theme-agendamento': '#3b82f6',
-    'theme-equipe': '#10b981',
-    'theme-marketing': '#ec4899',
-    'theme-automacao-ia': '#8b5cf6',
-    'theme-website': '#f97316',
-    'theme-config': '#0ea5e9',
-    'theme-negocio': '#ef4444',
-    'theme-suporte': '#64748b',
-    'theme-outros': '#a855f7'
+    'theme-primeiros-passos':  '#06b6d4',
+    'theme-migracao':          '#f59e0b',
+    'theme-precificacao':      '#3b82f6',
+    'theme-tipos-servico':     '#10b981',
+    'theme-agendamento':       '#ec4899',
+    'theme-pagamentos':        '#8b5cf6',
+    'theme-equipe':            '#f97316',
+    'theme-marketing-anuncios':'#0ea5e9',
+    'theme-marketing-seo':     '#14b8a6',
+    'theme-marketing-leads':   '#a855f7',
+    'theme-automacao-ia':      '#ef4444',
+    'theme-website':           '#eab308',
+    'theme-funcionalidades':   '#6366f1',
+    'theme-suporte':           '#64748b',
+    'theme-equipamentos':      '#84cc16',
+    'theme-danos':             '#dc2626',
+    'theme-financas':          '#0891b2',
+    'theme-conteudo':          '#d946ef',
+    'theme-discussoes-gerais': '#78716c'
 };
 
 // Lista de Stopwords comuns em português e inglês para busca semântica simples
