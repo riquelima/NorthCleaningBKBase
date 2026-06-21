@@ -12,6 +12,47 @@ let isPhysicsEnabled = true;
 let aiConfig = { provider: 'none', apiKey: '' };
 let isApostilaGenerated = false;
 let isTrainingsRendered = false;
+let hoveredNodeId = null;
+let dimmedNodes = new Set();
+
+// ==========================================================================
+// CONFIG DE FÍSICA DO GRAFO — ajuste estes valores para tunar o movimento
+// Biblioteca: vis-network (engine Barnes-Hut interna)
+// Nota: valores diferentes do d3-force! damping 0.5–0.9, não 0.3–0.4.
+// ==========================================================================
+const GRAPH_PHYSICS = {
+    // Barnes-Hut (repulsão) — vis-network semantics
+    gravitationalConstant: -4000,  // Repulsão forte para clusters bem separados
+    centralGravity:        0.08,   // Atrai suavemente pro centro
+    springLength:          100,    // Comprimento base das molas
+    springConstant:        0.01,   // Molas macias (orgânico)
+    damping:               0.85,   // 0.5–0.9 (vis-network default: 0.88. 0.85 = suave mas estável)
+    avoidOverlap:          1.5,    // Separação extra entre nós
+
+    // Drag reativo
+    springConstantDrag:    0.08,   // Molas mais rígidas durante drag (reação imediata)
+    dragRecoverMs:         2000,   // Tempo para voltar ao springConstant normal após drag
+
+    // Hover highlight
+    hover: {
+        dimmedOpacity: 0.08  // Opacidade dos nós não conectados
+    }
+};
+
+// Mapeamento de cores de temas para consistência (11 categorias)
+const themeColors = {
+    'theme-migracao': '#06b6d4',
+    'theme-pagamentos': '#eab308',
+    'theme-agendamento': '#3b82f6',
+    'theme-equipe': '#10b981',
+    'theme-marketing': '#ec4899',
+    'theme-automacao-ia': '#8b5cf6',
+    'theme-website': '#f97316',
+    'theme-config': '#0ea5e9',
+    'theme-negocio': '#ef4444',
+    'theme-suporte': '#64748b',
+    'theme-outros': '#a855f7'
+};
 
 // Lista de Stopwords comuns em português e inglês para busca semântica simples
 const STOPWORDS = new Set([
@@ -23,6 +64,13 @@ const STOPWORDS = new Set([
 
 // Inicialização da Página
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Esconder loading screen
+    const loadingEl = document.getElementById("loading-screen");
+    if (loadingEl) {
+        loadingEl.classList.add("hidden");
+        setTimeout(() => { loadingEl.style.display = "none"; }, 500);
+    }
+    
     // 1. Carregar Configurações de IA
     loadAIConfig();
     
@@ -147,7 +195,14 @@ function setupEventListeners() {
         toggleAPIKeyField(e.target.value);
     });
 
-    // Controles do Grafo
+    // Controles do Grafo — stopPropagation para evitar que o canvas do vis-network intercepte
+    const graphControls = document.querySelector(".graph-controls");
+    if (graphControls) {
+        graphControls.addEventListener("mousedown", (e) => e.stopPropagation());
+        graphControls.addEventListener("mouseup", (e) => e.stopPropagation());
+        graphControls.addEventListener("click", (e) => e.stopPropagation());
+    }
+
     document.getElementById("btn-toggle-physics").addEventListener("click", togglePhysics);
     document.getElementById("btn-reset-graph").addEventListener("click", resetGraphZoom);
 
@@ -252,27 +307,38 @@ function closeModalSettings() {
 // ==========================================================================
 // SEÇÃO 1: GRAFO DE CONHECIMENTO (Obsidian Style via Vis.js)
 // ==========================================================================
+
+// Gerar legenda dinâmica com cores reais das categorias existentes
+function generateGraphLegend() {
+    const legend = document.getElementById('graph-legend');
+    if (!legend || !knowledgeBase.themes) return;
+
+    let html = '';
+    // Nó central
+    html += `<div class="legend-item">
+        <div class="legend-dot" style="background:#ffffff; box-shadow:0 0 10px rgba(255,255,255,0.7); border:2px solid #8b5cf6;"></div>
+        <span>Base de Conhecimento</span>
+    </div>`;
+
+    // Categorias com suas cores
+    knowledgeBase.themes.forEach(theme => {
+        const color = themeColors[theme.id] || '#8b5cf6';
+        const shortName = theme.name.split(' (')[0];
+        html += `<div class="legend-item">
+            <div class="legend-dot" style="background:${color}; box-shadow:0 0 8px ${color}80;"></div>
+            <span>${shortName}</span>
+        </div>`;
+    });
+
+    legend.innerHTML = html;
+}
+
 function initGrafo() {
     const container = document.getElementById("graph-container");
     if (!container) return;
 
     const nodesArray = [];
     const edgesArray = [];
-
-    // Mapeamento de cores de temas para consistência (11 categorias da nova base de conhecimento)
-    const themeColors = {
-        'theme-migracao': '#06b6d4',      // Ciano (Migração)
-        'theme-pagamentos': '#eab308',     // Dourado (Stripe/Cobrança)
-        'theme-agendamento': '#3b82f6',    // Azul (Reservas/Calendário)
-        'theme-equipe': '#10b981',         // Verde (Cleaners/VAs/1099)
-        'theme-marketing': '#ec4899',      // Rosa (SEO/Anúncios/Reviews)
-        'theme-automacao-ia': '#8b5cf6',   // Roxo (Zapier/IA/API)
-        'theme-website': '#f97316',        // Laranja (Tema/Customização CSS)
-        'theme-config': '#0ea5e9',         // Ciano claro (Configurações BK)
-        'theme-negocio': '#ef4444',        // Vermelho (Precificação/Negócios)
-        'theme-suporte': '#64748b',        // Slate (Bugs/Suporte)
-        'theme-outros': '#a855f7'          // Lilás (Gerais/Outros)
-    };
 
     // Adiciona o nó central unificado (Knowledge Base - Raiz da teia)
     nodesArray.push({
@@ -316,12 +382,12 @@ function initGrafo() {
 
         nodesArray.push({
             id: theme.id,
-            label: theme.name.split(' (')[0], // Rótulo visível apenas nas categorias
+            label: theme.name.split(' (')[0],
             title: `<b>${theme.name}</b><br>${theme.description}`,
             group: 'theme',
-            size: 16, // Tamanho físico fixo elegante em pixels
+            size: 18,
             borderWidth: 2,
-            borderWidthSelected: 3,
+            borderWidthSelected: 4,
             color: {
                 background: color,
                 border: '#ffffff',
@@ -336,14 +402,14 @@ function initGrafo() {
             },
             font: {
                 color: '#f8fafc',
-                size: 14,
+                size: 13,
                 face: 'Outfit',
                 weight: '600'
             },
             shadow: {
                 enabled: true,
                 color: color,
-                size: 8,
+                size: 12,
                 x: 0,
                 y: 0
             }
@@ -380,7 +446,7 @@ function initGrafo() {
         const titleText = post.title || "Discussão";
         
         tooltipEl.innerHTML = `
-            <div style="font-weight: 700; color: #a78bfa; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Publicado por ${post.author}</div>
+            <div style="font-weight: 700; color: ${themeColor}; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Publicado por ${post.author}</div>
             <div style="font-weight: 600; color: #ffffff; margin-bottom: 6px; font-family: 'Outfit', sans-serif; font-size: 13px;">${titleText}</div>
             <div style="color: #94a3b8; font-size: 11px;">${post.content.substring(0, 130)}${post.content.length > 130 ? '...' : ''}</div>
         `;
@@ -390,35 +456,35 @@ function initGrafo() {
             label: '', 
             title: tooltipEl, 
             group: 'post',
-            size: 4.5, // Bolinhas minúsculas e limpas como no Obsidian
-            borderWidth: 0,
-            borderWidthSelected: 1.5,
+            size: 5,
+            borderWidth: 1,
+            borderWidthSelected: 2,
             color: {
-                background: '#4b5563', // Cinza neutro no estado normal
-                border: '#4b5563',
+                background: themeColor,  // Cor do tema (mesma cor da categoria)
+                border: 'rgba(255,255,255,0.15)',
                 highlight: {
-                    background: themeColor, // Acende com a cor do tema ao ser selecionado
+                    background: themeColor,
                     border: '#ffffff'
                 },
                 hover: {
-                    background: themeColor, // Acende com a cor do tema no mouse hover
+                    background: themeColor,
                     border: '#ffffff'
                 }
             }
         });
 
-        // Conecta o post ao seu respectivo tema
+        // Conecta o post ao seu respectivo tema — edges coloridas com a cor do tema
         edgesArray.push({
             from: post.post_id,
             to: post.theme_id,
             color: {
-                color: 'rgba(255, 255, 255, 0.06)', // Linhas finas quase invisíveis
+                color: themeColor + '25',       // 15% opacidade da cor do tema
                 highlight: themeColor,
                 hover: themeColor
             },
             width: 0.6,
-            hoverWidth: 1.2,
-            selectionWidth: 1.5
+            hoverWidth: 1.5,
+            selectionWidth: 2
         });
     });
 
@@ -428,67 +494,121 @@ function initGrafo() {
     };
 
     const options = {
+        layout: {
+            improvedLayout: false
+        },
         nodes: {
             shape: 'dot'
-            // Sem escala automática para garantir pontos uniformes e limpos
         },
         edges: {
-            arrows: {
-                to: { enabled: false }
-            },
-            smooth: false // Arestas retas e limpas como no Obsidian
+            arrows: { to: { enabled: false } },
+            smooth: false
         },
         physics: {
             enabled: true,
             solver: 'barnesHut',
             barnesHut: {
-                gravitationalConstant: -2800, // Repulsão forte para espalhar os nós no fundo escuro
-                centralGravity: 0.15,          // Mantém a teia centralizada na tela
-                springLength: 95,             // Espaçamento confortável
-                springConstant: 0.05,         // Força de atração moderada das molas
-                damping: 0.88,                // Amortecimento forte para parar a trepidação rapidamente
-                avoidOverlap: 1.0             // Impede sobreposição física dos nós
+                gravitationalConstant: GRAPH_PHYSICS.gravitationalConstant,
+                centralGravity:        GRAPH_PHYSICS.centralGravity,
+                springLength:          GRAPH_PHYSICS.springLength,
+                springConstant:        GRAPH_PHYSICS.springConstant,
+                damping:               GRAPH_PHYSICS.damping,
+                avoidOverlap:          GRAPH_PHYSICS.avoidOverlap,
+                theta: 0.5  // Barnes-Hut accuracy (0.5 = equilíbrio speed/quality)
             },
-            minVelocity: 0.75,                // Congela a animação quando desacelera, economizando CPU
             stabilization: {
                 enabled: true,
-                iterations: 150,              // Executa iterações de pré-estabilização para evitar saltos visuais ao carregar
+                iterations: 150,
                 updateInterval: 25,
                 fit: true
             }
         },
         interaction: {
             hover: true,
-            tooltipDelay: 150,
+            tooltipDelay: 120,
             zoomView: true,
-            dragView: true
+            dragView: true,
+            dragNodes: true,
+            hideEdgesOnDrag: false,
+            navigationButtons: false
         }
     };
 
     // Criar a rede Vis.js
     network = new vis.Network(container, data, options);
 
-    // Congelar a simulação física do grafo após a estabilização para economizar 100% de CPU em background
-    network.on("stabilized", () => {
-        console.log("Grafo estabilizado. Congelando física.");
-        network.setOptions({ physics: { enabled: false } });
-        isPhysicsEnabled = false;
+    // Gerar legenda dinâmica com cores reais das categorias
+    generateGraphLegend();
+
+    // ---- FASE 1: Após estabilização, manter physics ativo para flutuação contínua ----
+    network.once("stabilizationIterationsDone", () => {
+        // Manter física ativo mas com estabilização desligada
+        // minVelocity > 0 para evitar overflow recursivo no Barnes-Hut
+        network.setOptions({
+            physics: {
+                enabled: true,
+                stabilization: { enabled: false }
+            }
+        });
+        isPhysicsEnabled = true;
+
         const btn = document.getElementById("btn-toggle-physics");
         if (btn) {
             btn.innerHTML = `
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
                 </svg>
-                Soltar Grafo
+                Congelar Grafo
             `;
         }
+    });
+
+    // ---- DRAG: manter física reativa durante arrasto ----
+    network.on("dragStart", (params) => {
+        if (params.nodes.length > 0) {
+            // Molas mais rígidas durante drag para reatividade imediata
+            network.setOptions({
+                physics: {
+                    barnesHut: { springConstant: GRAPH_PHYSICS.springConstantDrag }
+                }
+            });
+        }
+    });
+
+    network.on("dragEnd", (params) => {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            // Liberar nó para voltar a flutuar
+            network.releaseNode(nodeId);
+            // Relaxar molas gradualmente
+            setTimeout(() => {
+                if (isPhysicsEnabled) {
+                    network.setOptions({
+                        physics: {
+                            barnesHut: { springConstant: GRAPH_PHYSICS.springConstant }
+                        }
+                    });
+                }
+            }, GRAPH_PHYSICS.dragRecoverMs);
+        }
+    });
+
+    // ---- HOVER: highlight nó + conexões, escurecer resto ----
+    network.on("hoverNode", (params) => {
+        hoveredNodeId = params.node;
+        applyHoverHighlight(params.node, true);
+    });
+
+    network.on("blurNode", () => {
+        hoveredNodeId = null;
+        applyHoverHighlight(null, false);
     });
 
     // Evento de Clique no Nó
     network.on("click", (params) => {
         if (params.nodes.length > 0) {
             const clickedNodeId = params.nodes[0];
-            // Se for um nó de post (não é um tema)
             if (!clickedNodeId.startsWith('theme-')) {
                 openPostDrawer(clickedNodeId);
             }
@@ -496,35 +616,88 @@ function initGrafo() {
     });
 }
 
+// ---- HOVER HIGHLIGHT: glow no nó focado, fade nos demais ----
+function applyHoverHighlight(focusedNodeId, isHover) {
+    if (!network) return;
+    const allNodes = network.body.data.nodes;
+
+    if (!isHover || focusedNodeId === null) {
+        // Restaurar opacidade de todos
+        const resets = [];
+        allNodes.forEach(node => {
+            if (node.hidden) return;
+            resets.push({ id: node.id, opacity: undefined });
+        });
+        allNodes.update(resets);
+        dimmedNodes.clear();
+        return;
+    }
+
+    // Encontrar nós conectados ao focado
+    const connectedIds = new Set([focusedNodeId]);
+    const allEdges = network.body.data.edges;
+    allEdges.forEach(edge => {
+        if (edge.from === focusedNodeId) connectedIds.add(edge.to);
+        if (edge.to === focusedNodeId) connectedIds.add(edge.from);
+    });
+
+    // Escurecer nós não conectados
+    const updates = [];
+    dimmedNodes.clear();
+    allNodes.forEach(node => {
+        if (node.hidden) return;
+        if (!connectedIds.has(node.id)) {
+            updates.push({ id: node.id, opacity: GRAPH_PHYSICS.hover.dimmedOpacity });
+            dimmedNodes.add(node.id);
+        } else {
+            updates.push({ id: node.id, opacity: undefined }); // restaurar
+        }
+    });
+    allNodes.update(updates);
+}
+
 function togglePhysics() {
     isPhysicsEnabled = !isPhysicsEnabled;
     const btn = document.getElementById("btn-toggle-physics");
     
     if (network) {
-        network.setOptions({ physics: { enabled: isPhysicsEnabled } });
+        if (isPhysicsEnabled) {
+            // Reativar flutuação idle
+            network.setOptions({
+                physics: {
+                    enabled: true,
+                    stabilization: { enabled: false }
+                }
+            });
+        } else {
+            // Congelar: desligar física
+            network.setOptions({ physics: { enabled: false } });
+        }
     }
     
-    if (isPhysicsEnabled) {
-        btn.innerHTML = `
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-            </svg>
-            Congelar Grafo
-        `;
-    } else {
-        btn.innerHTML = `
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Soltar Grafo
-        `;
+    if (btn) {
+        if (isPhysicsEnabled) {
+            btn.innerHTML = `
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+                Congelar Grafo
+            `;
+        } else {
+            btn.innerHTML = `
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Soltar Grafo
+            `;
+        }
     }
 }
 
 function resetGraphZoom() {
     if (network) {
-        network.fit({ animation: true });
+        network.fit();
     }
 }
 
@@ -990,17 +1163,37 @@ function appendMessage(text, sender) {
     const container = document.getElementById("chat-messages");
     const msgDiv = document.createElement("div");
     msgDiv.className = `message ${sender}`;
-    
+
+    // Avatar
+    const avatarDiv = document.createElement("div");
+    avatarDiv.className = "message-avatar";
+    if (sender === 'user') {
+        avatarDiv.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+    } else {
+        avatarDiv.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 0 1 1h1a4 4 0 0 1 0 8h-1a1 1 0 0 0-1 1v1a4 4 0 0 1-8 0v-1a1 1 0 0 0-1-1H5a4 4 0 0 1 0-8h1a1 1 0 0 0 1-1V6a4 4 0 0 1 4-4z"/></svg>`;
+    }
+    msgDiv.appendChild(avatarDiv);
+
+    // Body
+    const bodyDiv = document.createElement("div");
+    bodyDiv.className = "message-body";
+
+    const senderDiv = document.createElement("div");
+    senderDiv.className = "message-sender";
+    senderDiv.innerText = sender === 'user' ? 'Você' : 'Booking Koala AI';
+    bodyDiv.appendChild(senderDiv);
+
     const contentDiv = document.createElement("div");
     contentDiv.className = "message-content";
     contentDiv.innerHTML = formatMarkdownToHTML(text);
-    msgDiv.appendChild(contentDiv);
+    bodyDiv.appendChild(contentDiv);
 
     const metaDiv = document.createElement("div");
     metaDiv.className = "message-meta";
     metaDiv.innerText = sender === 'user' ? 'Você' : (aiConfig.provider !== 'none' ? 'IA Koala' : 'Sistema');
-    msgDiv.appendChild(metaDiv);
+    bodyDiv.appendChild(metaDiv);
 
+    msgDiv.appendChild(bodyDiv);
     container.appendChild(msgDiv);
 }
 
@@ -1009,17 +1202,26 @@ function appendSystemMessage(text) {
     const msgDiv = document.createElement("div");
     msgDiv.className = "message assistant";
     msgDiv.style.borderLeft = "3px solid var(--accent-blue)";
-    
+
+    const avatarDiv = document.createElement("div");
+    avatarDiv.className = "message-avatar";
+    avatarDiv.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
+    msgDiv.appendChild(avatarDiv);
+
+    const bodyDiv = document.createElement("div");
+    bodyDiv.className = "message-body";
+
+    const senderDiv = document.createElement("div");
+    senderDiv.className = "message-sender";
+    senderDiv.innerText = "Sistema";
+    bodyDiv.appendChild(senderDiv);
+
     const contentDiv = document.createElement("div");
     contentDiv.className = "message-content";
     contentDiv.innerHTML = text;
-    msgDiv.appendChild(contentDiv);
-    
-    const metaDiv = document.createElement("div");
-    metaDiv.className = "message-meta";
-    metaDiv.innerText = "Sistema";
-    msgDiv.appendChild(metaDiv);
-    
+    bodyDiv.appendChild(contentDiv);
+
+    msgDiv.appendChild(bodyDiv);
     container.appendChild(msgDiv);
     container.scrollTop = container.scrollHeight;
 }
@@ -1030,14 +1232,24 @@ function appendTypingIndicator() {
     const id = "typing-" + Date.now();
     msgDiv.id = id;
     msgDiv.className = "message assistant";
-    msgDiv.innerHTML = `
-        <div style="display: flex; gap: 4px; align-items: center; padding: 4px 10px;">
-            <span>North Cleaning - Koala Hub está buscando e analisando as discussões</span>
-            <span class="typing-dot" style="width:6px;height:6px;background:var(--text-muted);border-radius:50%;animation:typingBounce 1.4s infinite 0.2s;"></span>
-            <span class="typing-dot" style="width:6px;height:6px;background:var(--text-muted);border-radius:50%;animation:typingBounce 1.4s infinite 0.4s;"></span>
-            <span class="typing-dot" style="width:6px;height:6px;background:var(--text-muted);border-radius:50%;animation:typingBounce 1.4s infinite 0.6s;"></span>
+
+    const avatarDiv = document.createElement("div");
+    avatarDiv.className = "message-avatar";
+    avatarDiv.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 0 1 1h1a4 4 0 0 1 0 8h-1a1 1 0 0 0-1 1v1a4 4 0 0 1-8 0v-1a1 1 0 0 0-1-1H5a4 4 0 0 1 0-8h1a1 1 0 0 0 1-1V6a4 4 0 0 1 4-4z"/></svg>`;
+    msgDiv.appendChild(avatarDiv);
+
+    const bodyDiv = document.createElement("div");
+    bodyDiv.className = "message-body";
+    bodyDiv.innerHTML = `
+        <div class="message-sender">Booking Koala AI</div>
+        <div style="display: flex; gap: 5px; align-items: center; padding: 6px 0;">
+            <span class="typing-dot" style="width:6px;height:6px;background:var(--accent-purple);border-radius:50%;animation:typingBounce 1.4s infinite 0.2s;"></span>
+            <span class="typing-dot" style="width:6px;height:6px;background:var(--accent-purple);border-radius:50%;animation:typingBounce 1.4s infinite 0.4s;"></span>
+            <span class="typing-dot" style="width:6px;height:6px;background:var(--accent-purple);border-radius:50%;animation:typingBounce 1.4s infinite 0.6s;"></span>
+            <span style="margin-left: 6px; font-size: 13px; color: var(--text-muted);">buscando e analisando discussões</span>
         </div>
     `;
+    msgDiv.appendChild(bodyDiv);
     
     // Adiciona animação de bouncing no documento temporariamente se não houver
     if (!document.getElementById("style-typing-anim")) {

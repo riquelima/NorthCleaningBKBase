@@ -7,12 +7,23 @@
     <meta name="description" content="Central interativa contendo a base de conhecimento do grupo Booking Koala com grafo interativo, assistente IA com RAG e apostila formatada em PDF.">
     
     <!-- CSS Estilos Premium -->
-    <link rel="stylesheet" href="index.css?v=20260619_6">
+    <link rel="stylesheet" href="index.css?v=20260620_6">
     
-    <!-- Biblioteca Vis.js para Grafo Interativo -->
-    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <!-- Redirecionar /favicon.ico para favicon.svg -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Biblioteca Vis.js para Grafo Interativo (defer para não bloquear render) -->
+    <script defer src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </head>
 <body>
+
+    <!-- Loading Skeleton (escondido pelo JS após carregar) -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="loading-ring"></div>
+            <div class="loading-text">Carregando Koala Hub...</div>
+        </div>
+    </div>
 
     <!-- Fundo de Gradiente Líquido Flutuante -->
     <div class="liquid-orbs">
@@ -68,21 +79,8 @@
                     </div>
                 </div>
 
-                <!-- Legenda do Grafo (Obsidian Style) -->
-                <div class="graph-legend">
-                    <div class="legend-item">
-                        <div class="legend-dot kb-root"></div>
-                        <span>Base de Conhecimento (Nó Central)</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot theme"></div>
-                        <span>Categoria (Colorida por Tema)</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot post"></div>
-                        <span>Discussão / Postagem (Pontinho Cinza)</span>
-                    </div>
-                </div>
+                <!-- Legenda do Grafo (gerada dinamicamente pelo JS) -->
+                <div id="graph-legend" class="graph-legend"></div>
 
                 <!-- Container do Grafo Vis.js -->
                 <div id="graph-container"></div>
@@ -90,43 +88,80 @@
 
             <!-- SECTION 2: Chat Inteligente (RAG local ou API) -->
             <section id="view-chat" class="view-section">
-                <div class="chat-banner">
-                    <div class="chat-banner-text">
-                        <h2>Pergunte à Base de Conhecimento</h2>
-                        <p>Interaja com o histórico de discussões usando nosso motor IA. Faça perguntas sobre configuração, marketing, Stripe ou contratação.</p>
+                <!-- Header do Chat estilo AI Kit -->
+                <div class="chat-header">
+                    <div class="chat-header-left">
+                        <div class="chat-avatar chat-avatar-ai">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 0 1 1h1a4 4 0 0 1 0 8h-1a1 1 0 0 0-1 1v1a4 4 0 0 1-8 0v-1a1 1 0 0 0-1-1H5a4 4 0 0 1 0-8h1a1 1 0 0 0 1-1V6a4 4 0 0 1 4-4z"/>
+                                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                            </svg>
+                            <span class="chat-avatar-pulse"></span>
+                        </div>
+                        <div class="chat-header-info">
+                            <h3>Booking Koala AI</h3>
+                            <span class="chat-header-status">
+                                <span class="status-dot"></span>
+                                Online agora
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chat-header-right">
+                        <span class="chat-model-badge">GPT-4o</span>
                     </div>
                 </div>
 
                 <!-- Painel de Mensagens -->
                 <div id="chat-messages" class="chat-messages-container">
                     <div class="message assistant">
-                        Olá! Eu sou o assistente virtual da base de conhecimento Booking Koala. Como posso ajudar você hoje?
-                        <br><br>
-                        Você pode perguntar coisas como:
-                        <ul>
-                            <li>Como configurar o Stripe ou cobranças?</li>
-                            <li>Como migrar cartões de crédito do Launch27?</li>
-                            <li>Dicas para conseguir mais avaliações (reviews)?</li>
-                            <li>Como operar faxinas de Airbnb / STR?</li>
-                        </ul>
-                        <div class="message-meta">Sistema</div>
+                        <div class="message-avatar">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 0 1 1h1a4 4 0 0 1 0 8h-1a1 1 0 0 0-1 1v1a4 4 0 0 1-8 0v-1a1 1 0 0 0-1-1H5a4 4 0 0 1 0-8h1a1 1 0 0 0 1-1V6a4 4 0 0 1 4-4z"/>
+                            </svg>
+                        </div>
+                        <div class="message-body">
+                            <div class="message-sender">Booking Koala AI</div>
+                            <div class="message-text">Olá! Eu sou o assistente virtual da base de conhecimento Booking Koala. Como posso ajudar você hoje?</div>
+                            <ul class="message-list">
+                                <li>Como configurar o Stripe ou cobranças?</li>
+                                <li>Como migrar cartões de crédito do Launch27?</li>
+                                <li>Dicas para conseguir mais avaliações (reviews)?</li>
+                                <li>Como operar faxinas de Airbnb / STR?</li>
+                            </ul>
+                            <div class="message-meta">Sistema</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Chips de Sugestões Rápida -->
                 <div class="chat-suggestions">
-                    <button class="suggestion-chip" data-query="Como migrar do Launch27 para o Booking Koala?">Migração Launch27</button>
-                    <button class="suggestion-chip" data-query="Qual é a melhor forma de gerar avaliações (reviews)?">Geração de Reviews</button>
-                    <button class="suggestion-chip" data-query="Como funciona a cobrança com Stripe no BK?">Stripe e Cobranças</button>
-                    <button class="suggestion-chip" data-query="Dicas sobre contratação de faxineiros (cleaners).">Contratação de Faxineiros</button>
+                    <button class="suggestion-chip" data-query="Como migrar do Launch27 para o Booking Koala?">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Migração Launch27
+                    </button>
+                    <button class="suggestion-chip" data-query="Qual é a melhor forma de gerar avaliações (reviews)?">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Geração de Reviews
+                    </button>
+                    <button class="suggestion-chip" data-query="Como funciona a cobrança com Stripe no BK?">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        Stripe e Cobranças
+                    </button>
+                    <button class="suggestion-chip" data-query="Dicas sobre contratação de faxineiros (cleaners).">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        Contratação de Faxineiros
+                    </button>
                 </div>
 
                 <!-- Barra de Digitação -->
                 <div class="chat-input-bar">
-                    <input type="text" id="chat-input-field" class="chat-input" placeholder="Escreva sua dúvida sobre o Booking Koala aqui..." aria-label="Pergunta para o chat">
-                    <button id="btn-send-message" class="btn-send">
-                        <span>Enviar</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button class="chat-input-action" title="Anexar arquivo">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                    </button>
+                    <input type="text" id="chat-input-field" class="chat-input" placeholder="Pergunte sobre Booking Koala..." aria-label="Pergunta para o chat">
+                    <button id="btn-send-message" class="btn-send-circle" title="Enviar mensagem">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                         </svg>
@@ -329,6 +364,6 @@
     </div>
 
     <!-- Script SPA e Lógica da Aplicação -->
-    <script src="dashboard.js?v=20260619_6"></script>
+    <script src="dashboard.js?v=20260620_6"></script>
 </body>
 </html>

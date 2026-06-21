@@ -7,35 +7,44 @@
 /* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
-/* CSS Variables */
+/* CSS Variables — Liquid Glass Design System (iOS 27 Figma Tokens) */
 :root {
-    --bg-primary: #030712; /* Fundo escuro Apple Style */
-    --bg-secondary: rgba(15, 23, 42, 0.35); /* Transparência para glassmorphism */
-    --bg-tertiary: rgba(30, 41, 59, 0.5);
-    --accent-purple: #8b5cf6;
-    --accent-purple-glow: rgba(139, 92, 246, 0.45);
-    --accent-purple-hover: #a78bfa;
-    --accent-gold: #f59e0b;
-    --accent-gold-glow: rgba(245, 158, 11, 0.3);
-    --accent-blue: #0ea5e9;
-    --accent-green: #10b981;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --text-dark: #0f172a;
-    
-    /* Variáveis Spatial Glassmorphism */
-    --glass-bg: rgba(15, 23, 42, 0.45);
+    --bg-primary: #000000;
+    --bg-secondary: rgba(28, 28, 30, 0.65);
+    --bg-tertiary: rgba(44, 44, 46, 0.55);
+    --accent-purple: #7B61FF;
+    --accent-purple-glow: rgba(123, 97, 255, 0.4);
+    --accent-purple-hover: #9B85FF;
+    --accent-gold: #F8CC46;
+    --accent-gold-glow: rgba(248, 204, 70, 0.3);
+    --accent-blue: #007AFF;
+    --accent-green: #30D158;
+    --accent-red: #FF3B30;
+    --text-main: #FFFFFF;
+    --text-muted: #98989D;
+    --text-dark: #000000;
+
+    /* Liquid Glass Tokens (Figma iOS 27) */
+    --glass-bg: rgba(28, 28, 30, 0.72);
+    --glass-bg-elevated: rgba(44, 44, 46, 0.65);
+    --glass-bg-ultra: rgba(28, 28, 30, 0.85);
     --glass-border: rgba(255, 255, 255, 0.08);
     --glass-border-light: rgba(255, 255, 255, 0.15);
-    --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
-    --glass-blur: 24px;
-    --glass-saturate: 190%;
-    
+    --glass-border-ultra: rgba(255, 255, 255, 0.22);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    --glass-shadow-elevated: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+    --glass-blur: 20px;
+    --glass-blur-thin: 8px;
+    --glass-blur-thick: 40px;
+    --glass-saturate: 180%;
+    --glass-inset-border: inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.12);
+
     --radius-sm: 10px;
-    --radius-md: 18px;
-    --radius-lg: 28px;
-    --font-outfit: 'Outfit', 'Inter', sans-serif;
-    --font-inter: 'Inter', sans-serif;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --font-outfit: 'Outfit', -apple-system, 'SF Pro Display', 'SF Pro Text', sans-serif;
+    --font-inter: 'Inter', -apple-system, 'SF Pro Text', sans-serif;
     --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     --transition-elastic: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -136,13 +145,14 @@ body {
     100% { transform: translate(-40px, 80px) scale(0.9) rotate(360deg); }
 }
 
-/* Header Dashboard (Estilo macOS Window Header) */
+/* Header Dashboard — Liquid Glass Safari Style */
 header {
-    background: rgba(10, 15, 30, 0.4);
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    border-bottom: 1px solid var(--glass-border);
-    padding: 16px 28px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+    border-bottom: 0.5px solid var(--glass-border-light);
+    box-shadow: var(--glass-inset-border);
+    padding: 14px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -176,18 +186,18 @@ header {
 }
 
 .logo-icon {
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-outfit);
     font-weight: 800;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
-    box-shadow: 0 0 18px var(--accent-purple-glow);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
 }
 
 .logo-text {
@@ -207,25 +217,27 @@ header {
 }
 
 .btn-config {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border-light);
+    box-shadow: var(--glass-inset-border), 0 2px 8px rgba(0, 0, 0, 0.3);
     color: var(--text-main);
-    padding: 8px 18px;
-    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    font-family: var(--font-outfit);
+    font-family: var(--font-inter);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     transition: var(--transition-smooth);
+    letter-spacing: -0.01em;
 }
 
 .btn-config:hover {
     background: var(--accent-purple);
-    box-shadow: 0 0 15px var(--accent-purple-glow);
-    border-color: var(--accent-purple-hover);
+    box-shadow: 0 0 20px var(--accent-purple-glow);
+    border-color: transparent;
     transform: translateY(-1px);
 }
 
@@ -258,34 +270,34 @@ header {
 /* Bottom NavBar Persistence */
 .bottom-navbar-container {
     position: fixed;
-    bottom: 24px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 480px;
+    max-width: 440px;
     z-index: 100;
-    pointer-events: none; /* Garante que cliques fora passem para elementos inferiores */
+    pointer-events: none;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .bottom-navbar {
-    background: rgba(15, 23, 42, 0.5); /* Vidro do macOS Dock */
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    border: 1px solid var(--glass-border-light);
-    border-radius: 30px; /* Dock extremamente arredondado */
-    padding: 10px 16px;
+    background: rgba(28, 28, 30, 0.78);
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    border: 0.5px solid var(--glass-border-light);
+    border-radius: 28px;
+    padding: 8px 12px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-    pointer-events: auto; /* Reativa cliques nos botões */
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), var(--glass-inset-border);
+    pointer-events: auto;
     transition: var(--transition-smooth);
 }
 
 .bottom-navbar:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 56px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    border-color: var(--glass-border-ultra);
+    box-shadow: 0 20px 56px rgba(0, 0, 0, 0.65), var(--glass-inset-border);
 }
 
 .nav-item {
@@ -293,19 +305,20 @@ header {
     border: none;
     outline: none;
     color: var(--text-muted);
-    padding: 10px 24px;
-    border-radius: 20px;
+    padding: 8px 20px;
+    border-radius: 16px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    font-family: var(--font-outfit);
+    gap: 3px;
+    font-family: var(--font-inter);
     font-weight: 500;
-    font-size: 12px;
-    transition: var(--transition-elastic); /* Transição elástica estilosa */
+    font-size: 10px;
+    transition: var(--transition-elastic);
     position: relative;
     overflow: hidden;
+    letter-spacing: -0.01em;
 }
 
 .nav-item svg {
@@ -318,14 +331,15 @@ header {
 
 .nav-item:hover {
     color: var(--text-main);
-    background: rgba(255, 255, 255, 0.05);
-    transform: scale(1.08); /* Zoom sutil ao passar o mouse */
+    background: rgba(255, 255, 255, 0.06);
+    transform: scale(1.05);
 }
 
 .nav-item.active {
-    color: #ffffff;
-    background: rgba(139, 92, 246, 0.25);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: var(--accent-blue);
+    background: rgba(0, 122, 255, 0.15);
+    box-shadow: inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.12);
+}
 }
 
 .nav-item.active svg {
@@ -356,28 +370,30 @@ header {
 
 .graph-controls {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 5;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    padding: 12px 18px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--glass-shadow);
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    background: var(--glass-bg-ultra);
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    border: 0.5px solid var(--glass-border-light);
+    padding: 14px 18px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow-elevated), var(--glass-inset-border);
     display: flex;
     flex-direction: column;
     gap: 10px;
     max-width: 280px;
+    pointer-events: auto;
 }
 
 .graph-controls h3 {
-    font-family: var(--font-outfit);
-    font-size: 16px;
+    font-family: var(--font-inter);
+    font-size: 15px;
     font-weight: 600;
-    color: var(--accent-purple-hover);
+    color: var(--text-main);
     margin-bottom: 2px;
+    letter-spacing: -0.02em;
 }
 
 .graph-controls p {
@@ -392,50 +408,63 @@ header {
 }
 
 .btn-icon {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border);
     color: var(--text-main);
     padding: 6px 12px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     font-size: 12px;
+    font-family: var(--font-inter);
     display: flex;
     align-items: center;
     gap: 6px;
     transition: var(--transition-smooth);
+    box-shadow: var(--glass-inset-border);
+    letter-spacing: -0.01em;
 }
 
 .btn-icon:hover {
-    background: var(--accent-purple);
+    background: var(--accent-blue);
+    box-shadow: 0 0 16px rgba(0, 122, 255, 0.3);
 }
 
 .graph-legend {
     position: absolute;
     bottom: 100px;
-    left: 20px;
-    z-index: 5;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    padding: 10px 14px;
+    left: 16px;
+    z-index: 100;
+    background: var(--glass-bg-ultra);
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    border: 0.5px solid var(--glass-border-light);
+    padding: 12px 14px;
     border-radius: var(--radius-md);
-    box-shadow: var(--glass-shadow);
+    box-shadow: var(--glass-shadow-elevated), var(--glass-inset-border);
     font-size: 11px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.legend-item:hover {
+    opacity: 1;
 }
 
 .legend-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .legend-dot.kb-root {
@@ -450,7 +479,7 @@ header {
 }
 
 .legend-dot.post {
-    background-color: #4b5563; /* Cinza Obsidian real dos posts */
+    background-color: #4b5563;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -461,20 +490,38 @@ header {
     background-color: transparent !important; /* Torna transparente para mostrar as orbes de fundo! */
     position: relative;
     cursor: grab;
+    z-index: 1; /* Garante que o canvas fique abaixo dos controles */
 }
 
 #graph-container:active {
     cursor: grabbing;
 }
 
+/* Canvas do vis-network — manter interação */
+#graph-container canvas {
+    pointer-events: auto !important;
+}
+
+/* Wrapper criado pelo vis-network: desabilitar captura de eventos
+   para que os botões de controle recebam os cliques normalmente */
+.vis-network {
+    pointer-events: none !important;
+}
+
+.graph-controls,
+.graph-legend {
+    pointer-events: auto !important;
+    position: relative; /* garante stacking context próprio */
+}
+
 /* Customização Premium do Tooltip do Vis.js */
 div.vis-tooltip {
-    background: rgba(10, 18, 36, 0.75) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: var(--glass-bg-ultra) !important;
+    backdrop-filter: blur(var(--glass-blur-thin)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin)) !important;
+    border: 0.5px solid var(--glass-border-light) !important;
     border-radius: var(--radius-md) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: var(--glass-shadow) !important;
     padding: 0 !important;
     overflow: hidden !important;
     position: absolute !important;
@@ -489,9 +536,9 @@ div.vis-tooltip {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(var(--glass-blur-thin));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin));
     z-index: 150;
     opacity: 0;
     pointer-events: none;
@@ -505,17 +552,17 @@ div.vis-tooltip {
 
 .drawer {
     position: fixed;
-    top: 20px; /* Margem do topo para parecer uma janela flutuante */
-    right: 20px; /* Margem da direita */
-    width: calc(100% - 40px);
+    top: 16px;
+    right: 16px;
+    width: calc(100% - 32px);
     max-width: 520px;
-    height: calc(100vh - 40px); /* Altura descontando margens */
-    background: rgba(10, 18, 36, 0.5) !important; /* Vidro Apple */
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: var(--radius-lg); /* Cantos bem arredondados de Macbook */
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    height: calc(100vh - 32px);
+    background: var(--glass-bg-ultra) !important;
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    border: 0.5px solid var(--glass-border-light) !important;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glass-shadow-elevated);
     z-index: 160;
     transform: translateX(calc(100% + 30px));
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -529,12 +576,12 @@ div.vis-tooltip {
 }
 
 .drawer-header {
-    padding: 22px 28px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 24px;
+    border-bottom: 0.5px solid var(--glass-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(5, 10, 24, 0.3);
+    background: rgba(28, 28, 30, 0.4);
 }
 
 .drawer-title-group {
@@ -699,61 +746,127 @@ div.vis-tooltip {
     transition: padding-bottom 0.3s ease;
 }
 
-.chat-banner {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(14, 165, 233, 0.1));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md);
-    padding: 22px 28px;
-    margin-bottom: 24px;
+/* Chat Header — AI Smart Chat UI Kit */
+.chat-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+    border: 0.5px solid var(--glass-border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-inset-border);
 }
 
-.chat-banner-text h2 {
+.chat-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.chat-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.chat-avatar-ai {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    box-shadow: 0 4px 16px rgba(123, 97, 255, 0.35);
+    color: white;
+}
+
+.chat-avatar-pulse {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-green);
+    animation: avatarPulse 2.5s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes avatarPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.08); opacity: 0.2; }
+}
+
+.chat-header-info h3 {
     font-family: var(--font-outfit);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
-    background: linear-gradient(to right, white, var(--accent-purple-hover));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
 }
 
-.chat-banner-text p {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 6px;
+.chat-header-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.chat-model-badge {
+    background: rgba(123, 97, 255, 0.15);
+    color: var(--accent-purple-hover);
+    border: 1px solid rgba(123, 97, 255, 0.3);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: var(--font-outfit);
+    letter-spacing: 0.5px;
 }
 
 .chat-messages-container {
     flex: 1;
-    background: rgba(15, 23, 42, 0.2); /* Vidro translúcido */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: var(--radius-md);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur-thin));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin));
+    border: 0.5px solid var(--glass-border);
+    border-radius: var(--radius-lg);
     padding: 24px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 18px;
     margin-bottom: 18px;
-    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 .message {
     display: flex;
-    flex-direction: column;
-    max-width: 80%;
+    gap: 12px;
+    max-width: 85%;
     padding: 14px 18px;
     border-radius: var(--radius-md);
     line-height: 1.6;
     font-size: 14.5px;
     animation: messageSlideIn 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    align-items: flex-start;
 }
 
 @keyframes messageSlideIn {
@@ -768,19 +881,95 @@ div.vis-tooltip {
 }
 
 .message.user {
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)); /* Roxo para Azul elétrico da Apple */
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
     color: white;
     align-self: flex-end;
     border-bottom-right-radius: 4px;
     box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+    flex-direction: row-reverse;
+}
+
+.message.user .message-avatar {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.message.user .message-sender {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.message.user .message-meta {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .message.assistant {
-    background: rgba(255, 255, 255, 0.05); /* Vidro claro */
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border);
     color: var(--text-main);
     align-self: flex-start;
     border-bottom-left-radius: 4px;
+    backdrop-filter: blur(var(--glass-blur-thin));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin));
+}
+
+/* Message Avatar */
+.message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    color: white;
+}
+
+/* Message Body */
+.message-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.message-sender {
+    font-family: var(--font-outfit);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+
+.message-text {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-main);
+    word-break: break-word;
+}
+
+.message-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.message-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 4px;
+}
+
+.message-list li::before {
+    content: '→';
+    color: var(--accent-purple-hover);
+    font-weight: 700;
+    flex-shrink: 0;
 }
 
 .message.system-error {
@@ -896,50 +1085,72 @@ div.vis-tooltip {
 
 .chat-input {
     flex: 1;
-    background: rgba(255, 255, 255, 0.05); /* Vidro fino */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--glass-bg-elevated);
+    backdrop-filter: blur(var(--glass-blur-thin));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin));
+    border: 0.5px solid var(--glass-border-light);
     border-radius: var(--radius-md);
-    padding: 15px 22px;
+    padding: 14px 20px;
     color: var(--text-main);
     font-family: var(--font-inter);
-    font-size: 14.5px;
+    font-size: 14px;
     outline: none;
-    transition: var(--transition-elastic);
+    transition: var(--transition-smooth);
+    letter-spacing: -0.01em;
 }
 
 .chat-input:focus {
-    border-color: var(--accent-purple);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-    transform: scale(1.005);
+    border-color: var(--accent-blue);
+    background: var(--glass-bg-ultra);
+    box-shadow: 0 0 16px rgba(0, 122, 255, 0.2), var(--glass-inset-border);
 }
 
-.btn-send {
-    background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
-    border: none;
-    color: white;
-    padding: 15px 22px;
-    border-radius: var(--radius-md);
+/* Chat Input Action Button (Attach) */
+.chat-input-action {
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border);
+    color: var(--text-muted);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
     cursor: pointer;
-    font-family: var(--font-outfit);
-    font-weight: 600;
-    transition: var(--transition-elastic);
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
 }
 
-.btn-send:hover {
-    background: linear-gradient(135deg, var(--accent-purple-hover), var(--accent-purple));
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
-    transform: translateY(-2px) scale(1.04);
+.chat-input-action:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    border-color: var(--glass-border-light);
 }
 
-.btn-send:active {
-    transform: translateY(0) scale(0.98);
+/* Circular Send Button — AI Kit Style */
+.btn-send-circle {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 16px rgba(123, 97, 255, 0.35);
+}
+
+.btn-send-circle:hover {
+    box-shadow: 0 6px 24px rgba(123, 97, 255, 0.5);
+    transform: translateY(-2px) scale(1.05);
+}
+
+.btn-send-circle:active {
+    transform: translateY(0) scale(0.95);
 }
 
 .chat-suggestions {
@@ -950,22 +1161,23 @@ div.vis-tooltip {
 }
 
 .suggestion-chip {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border);
     color: var(--text-muted);
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 7px 14px;
+    border-radius: var(--radius-md);
     font-size: 12px;
     cursor: pointer;
-    font-family: var(--font-outfit);
+    font-family: var(--font-inter);
     font-weight: 500;
     transition: var(--transition-smooth);
+    letter-spacing: -0.01em;
 }
 
 .suggestion-chip:hover {
-    background: rgba(139, 92, 246, 0.15);
-    color: white;
-    border-color: var(--accent-purple-hover);
+    background: rgba(0, 122, 255, 0.15);
+    color: var(--accent-blue);
+    border-color: rgba(0, 122, 255, 0.3);
     transform: translateY(-1px);
 }
 
@@ -1007,25 +1219,26 @@ div.vis-tooltip {
 }
 
 .btn-print {
-    background: linear-gradient(135deg, var(--accent-gold), #eab308);
+    background: var(--accent-gold);
     border: none;
     color: var(--text-dark);
-    padding: 12px 26px;
+    padding: 11px 22px;
     border-radius: var(--radius-md);
     cursor: pointer;
-    font-family: var(--font-outfit);
-    font-weight: 700;
-    font-size: 15px;
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
-    transition: var(--transition-elastic);
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(248, 204, 70, 0.25);
+    transition: var(--transition-smooth);
+    letter-spacing: -0.01em;
 }
 
 .btn-print:hover {
-    box-shadow: 0 8px 28px rgba(245, 158, 11, 0.45);
-    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 20px rgba(248, 204, 70, 0.4);
+    transform: translateY(-1px);
 }
 
 .btn-print:active {
@@ -1215,12 +1428,14 @@ div.vis-tooltip {
 }
 
 .modal-container {
-    background: var(--bg-secondary);
-    border: 1px solid var(--glass-border-light);
-    border-radius: var(--radius-lg);
+    background: var(--glass-bg-ultra);
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+    border: 0.5px solid var(--glass-border-light);
+    border-radius: var(--radius-xl);
     width: 90%;
     max-width: 500px;
-    box-shadow: var(--glass-shadow);
+    box-shadow: var(--glass-shadow-elevated);
     overflow: hidden;
     transform: scale(0.9);
     transition: transform 0.3s ease;
@@ -1265,8 +1480,8 @@ div.vis-tooltip {
 }
 
 .input-text {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border);
     border-radius: var(--radius-sm);
     padding: 10px 14px;
     color: var(--text-main);
@@ -1277,7 +1492,8 @@ div.vis-tooltip {
 }
 
 .input-text:focus {
-    border-color: var(--accent-purple);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 12px rgba(0, 122, 255, 0.15);
 }
 
 .form-help {
@@ -1288,45 +1504,46 @@ div.vis-tooltip {
 
 .modal-footer {
     padding: 16px 24px;
-    background: var(--bg-primary);
-    border-top: 1px solid var(--glass-border);
+    background: rgba(28, 28, 30, 0.4);
+    border-top: 0.5px solid var(--glass-border);
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 10px;
 }
 
 .btn-secondary {
-    background: transparent;
-    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-elevated);
+    border: 0.5px solid var(--glass-border);
     color: var(--text-main);
     padding: 8px 16px;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    font-family: var(--font-outfit);
-    font-size: 14px;
+    font-family: var(--font-inter);
+    font-size: 13px;
     transition: var(--transition-smooth);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .btn-primary {
-    background: var(--accent-purple);
+    background: var(--accent-blue);
     border: none;
     color: white;
     padding: 8px 16px;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    font-family: var(--font-outfit);
+    font-family: var(--font-inter);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     transition: var(--transition-smooth);
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.25);
 }
 
 .btn-primary:hover {
-    background: var(--accent-purple-hover);
-    box-shadow: 0 0 10px var(--accent-purple-glow);
+    background: #3395ff;
+    box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);
 }
 
 /* Responsividade Mobile */
@@ -1598,8 +1815,8 @@ div.vis-tooltip {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-md);
+    border: 0.5px solid var(--glass-border);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--glass-shadow);
     transition: var(--transition-smooth);
@@ -1609,8 +1826,8 @@ div.vis-tooltip {
 
 .training-card:hover {
     border-color: var(--glass-border-light);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 20px rgba(16, 185, 129, 0.25);
-    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 122, 255, 0.15);
+    transform: translateY(-3px);
 }
 
 .video-container {
@@ -1853,4 +2070,53 @@ div.vis-tooltip {
 .trainings-search-bar input::placeholder {
     color: var(--text-muted);
     opacity: 0.8;
+}
+
+/* ==========================================================================
+   Loading Skeleton (exibido imediatamente, ocultado pelo JS)
+   ========================================================================== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.loading-ring {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(139, 92, 246, 0.15);
+    border-top-color: var(--accent-purple);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-family: var(--font-outfit);
+    font-size: 15px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
 }
